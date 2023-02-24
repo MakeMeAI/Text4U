@@ -123,6 +123,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.indigo,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
         items: const <BottomNavigationBarItem>[
 
           BottomNavigationBarItem(
