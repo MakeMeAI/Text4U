@@ -16,9 +16,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
           // App Theme (1)
-        primarySwatch: Colors.indigo,
+        primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Home of Buttons'),
+      home: const MyHomePage(title: 'Welcome Back, NAME'),
     );
   }
 }
@@ -56,39 +56,33 @@ class _MyHomePageState extends State<MyHomePage> {
     // Rerunning build (4)
     return Scaffold(
       drawer: sidebar(),
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.blue,
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        backgroundColor: Color(0x4400000000),
+        elevation: 0,
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          // Column layout widget (5)
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            ElevatedButton(
-              child: Icon(Icons.forward),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => page2.Page2())
-                );
-              },
-            )
-          ],
+        child: Container (
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.purple,
+                  Colors.blue,
+                ],
+              )
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.blue,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white,
         items: const <BottomNavigationBarItem>[
