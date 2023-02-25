@@ -42,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       // Rerun build to update (3)
       _counter++;
+      _counter++;
     });
   }
 
