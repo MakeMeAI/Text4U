@@ -5,7 +5,7 @@ class Page2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: const Text("Welcome"),
         backgroundColor: Color(0x4400000000),
@@ -13,16 +13,6 @@ class Page2 extends StatelessWidget {
       ),
       body: Center (
         child: Container (
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.purple,
-                Colors.blue,
-              ],
-            )
-          ),
         ),
       ),
 
