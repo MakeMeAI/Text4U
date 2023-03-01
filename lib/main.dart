@@ -104,29 +104,32 @@ class _MyHomePageState extends StatelessWidget {
 
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 1,
         backgroundColor: Color(0x4400000000),
         elevation: 0,
         selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
-
+        unselectedItemColor: Colors.black,
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.call),
+            icon: Icon(Icons.home),
             tooltip: 'Calls',
-            label: '',
+            label: "Home",
+            //backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.camera),
             tooltip: 'Camera',
-            label: '',
+            label: "page 2",
+            //backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
             tooltip: 'Chats',
-            label: '',
+            label: "page 3",
+            //backgroundColor: Colors.red,
           ),
         ],
-        currentIndex: _selectedIndex,
+        //currentIndex: _selectedIndex, ---- add back in - ali
         //ADD BACK
         //onTap: _onItemTapped,
       ), // This trailing comma makes auto-formatting nicer for build methods.
