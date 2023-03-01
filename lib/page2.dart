@@ -4,14 +4,15 @@ class Page2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: const Text("Welcome"),
+        backgroundColor: Color(0x4400000000),
+        elevation: 0,
       ),
-      body: const Center (
-        child: Text (
-          "AHHHHH in Progress.... GO BACK NOWWWW",
-          style: TextStyle(fontSize: 50, color: Colors.teal, fontStyle: FontStyle.italic),
-          textAlign: TextAlign.center,
+      body: Center (
+        child: Container (
         ),
       ),
 

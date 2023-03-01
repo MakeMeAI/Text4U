@@ -16,103 +16,119 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
           // App Theme (1)
-        primarySwatch: Colors.indigo,
+        primarySwatch: Colors.blue,
+        canvasColor: Colors.transparent,
       ),
-      home: const MyHomePage(title: 'Home of Buttons'),
+      home: const PageViewer(),
     );
   }
 }
 
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  // Widget homepage look + subclass (2)
 
-  final String title;
+class PageViewer extends StatefulWidget {
+  const PageViewer({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<PageViewer> createState() => _PageViewState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _PageViewState extends State<PageViewer> {
+  final _controller = PageController(
+    initialPage: 0,
+  );
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+     decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.purple,
+              Colors.blue,
+            ],
+          )
+      ),
+      child: PageView(
+      controller: _controller,
+      children: [
+        _MyHomePageState(),
+         page2.Page2(),
+      ],
+
+    ),
+    );
+  }
+}
+
+
+
+class _MyHomePageState extends StatelessWidget {
   int _selectedIndex = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // Rerun build to update (3)
-      _counter++;
-    });
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  //FIGURE OUT WHY WRONG
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     // Rerunning build (4)
     return Scaffold(
       drawer: sidebar(),
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text("Welcome back, NAME"),
+        backgroundColor: Color(0x4400000000),
+        elevation: 0,
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          // Column layout widget (5)
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            ElevatedButton(
-              child: Icon(Icons.forward),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => page2.Page2())
-                );
-              },
-            )
-          ],
+        child: Container (
         ),
       ),
+
+      extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.indigo,
+        backgroundColor: Color(0x4400000000),
+        elevation: 0,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white,
         items: const <BottomNavigationBarItem>[
 
           BottomNavigationBarItem(
             icon: Icon(Icons.call),
-            label: 'Calls',
+            tooltip: 'Calls',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.camera),
-            label: 'Camera',
+            tooltip: 'Camera',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
-            label: 'Chats',
+            tooltip: 'Chats',
+            label: '',
           ),
         ],
         currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.flutter_dash),
+        //ADD BACK
+        //onTap: _onItemTapped,
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
