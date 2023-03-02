@@ -3,10 +3,12 @@ import "page2.dart" as page2;
 import "sidebar.dart";
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -31,10 +33,10 @@ class Nav extends StatefulWidget {
 
 class _NavState extends State<Nav> {
   int _selectedIndex = 0;
-  List<Widget> _pageOptions = <Widget>[
-    Text("Home"),
-    Text("Page2"),
-    Text("Messages"),
+  final List<Widget> _pageOptions = <Widget>[
+    const Text("Home"),
+    const Text("Page2"),
+    const Text("Messages"),
   ];
 
   void _onItemTap(int index) {
@@ -59,7 +61,7 @@ class _NavState extends State<Nav> {
         child: Stack (
           children: <Widget> [
             Container (
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -87,7 +89,7 @@ class _NavState extends State<Nav> {
         elevation: 0,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.black,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             tooltip: 'Calls',

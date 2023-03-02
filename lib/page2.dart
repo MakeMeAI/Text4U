@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Page2 extends StatelessWidget {
+  const Page2({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -8,7 +10,7 @@ class Page2 extends StatelessWidget {
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: const Text("Welcome"),
-        backgroundColor: Color(0x4400000000),
+        backgroundColor: const Color(0x4400000000),
         elevation: 0,
       ),
       body: Center (
