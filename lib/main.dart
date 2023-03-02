@@ -23,13 +23,27 @@ class MyApp extends StatelessWidget {
 }
 
 
-
 class Nav extends StatefulWidget {
   @override
   _NavState createState() => _NavState();
 }
 
+
 class _NavState extends State<Nav> {
+  int _selectedIndex = 0;
+  List<Widget> _pageOptions = <Widget>[
+    Text("Home", textAlign: TextAlign.center,),
+    Text("Page2", textAlign: TextAlign.center,),
+    Text("Messages", textAlign: TextAlign.center,),
+  ];
+
+  void _onItemTap(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold (
@@ -41,23 +55,27 @@ class _NavState extends State<Nav> {
         backgroundColor: Color(0x4400000000),
         elevation: 0,
       ),
-      body: Center (
-        child: Container (
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Colors.purple,
-                  Colors.blue,
-                ],
-              )
+      body: Stack (
+        children: <Widget> [
+          Container (
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.purple,
+                    Colors.blue,
+                  ],
+                )
+            ),
           ),
-        ),
+          _pageOptions.elementAt(_selectedIndex),
+        ]
+        //child: _pageOptions.elementAt(_selectedIndex),
       ),
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
+        //currentIndex: 2,
         backgroundColor: Color(0x4400000000),
         elevation: 0,
         selectedItemColor: Colors.white,
@@ -67,31 +85,27 @@ class _NavState extends State<Nav> {
             icon: Icon(Icons.home),
             tooltip: 'Calls',
             label: "Home",
-            //backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.camera),
             tooltip: 'Camera',
             label: "page 2",
-            //backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
             tooltip: 'Chats',
-            label: "page 3",
-            //backgroundColor: Colors.red,
+            label: "Messages",
           ),
         ],
-        //currentIndex: _selectedIndex, ---- add back in - ali
-        //ADD BACK
-        //onTap: _onItemTapped,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTap,
       ),
     );
   }
 }
 
-/*
 
+/*
 class _NavState extends State<Nav> {
   @override
   Widget build(BuildContext context) {
@@ -118,10 +132,10 @@ class _NavState extends State<Nav> {
 
   }
 }
-*/
 
+*/
 /*
-class _MyHomePageState extends StatelessWidget {
+class _MyHomePageState extends StatefulWidget {
   //FIGURE OUT WHY WRONG
   // void _onItemTapped(int index) {
   //   setState(() {
@@ -182,6 +196,12 @@ class _MyHomePageState extends StatelessWidget {
         //onTap: _onItemTapped,
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
   }
 }
 */
