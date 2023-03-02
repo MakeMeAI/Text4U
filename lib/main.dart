@@ -32,9 +32,9 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
   int _selectedIndex = 0;
   List<Widget> _pageOptions = <Widget>[
-    Text("Home", textAlign: TextAlign.center,),
-    Text("Page2", textAlign: TextAlign.center,),
-    Text("Messages", textAlign: TextAlign.center,),
+    Text("Home"),
+    Text("Page2"),
+    Text("Messages"),
   ];
 
   void _onItemTap(int index) {
@@ -55,23 +55,30 @@ class _NavState extends State<Nav> {
         backgroundColor: Color(0x4400000000),
         elevation: 0,
       ),
-      body: Stack (
-        children: <Widget> [
-          Container (
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.purple,
-                    Colors.blue,
-                  ],
-                )
+      body: Center (
+        child: Stack (
+          children: <Widget> [
+            Container (
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Colors.purple,
+                      Colors.blue,
+                    ],
+                  )
+              ),
             ),
-          ),
-          _pageOptions.elementAt(_selectedIndex),
-        ]
-        //child: _pageOptions.elementAt(_selectedIndex),
+            Positioned.fill(
+              child: Align(
+                  alignment: Alignment.center,
+                  child: _pageOptions.elementAt(_selectedIndex),
+              ),
+            ),
+            //_pageOptions.elementAt(_selectedIndex),
+          ]
+        ),
       ),
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
