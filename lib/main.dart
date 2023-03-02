@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import "page2.dart" as page2;
+import "page2.dart";
+import "page1.dart";
 import "sidebar.dart";
 
 void main() {
@@ -22,7 +23,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class Nav extends StatefulWidget {
   @override
   _NavState createState() => _NavState();
@@ -31,19 +31,97 @@ class Nav extends StatefulWidget {
 
 class _NavState extends State<Nav> {
   int _selectedIndex = 0;
+
+  PageController _pageController = PageController(initialPage: 0);
+
   List<Widget> _pageOptions = <Widget>[
-    Text("Home"),
-    Text("Page2"),
+    Page1(),
+    Page2(),
     Text("Messages"),
   ];
 
   void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => _pageOptions[index]),
+      );
     });
   }
 
-
+  // delete if fails
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold (
+      drawer: sidebar(),
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        title: Text("Welcome back, NAME"),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: Stack (
+        children: <Widget> [
+          Container(
+            decoration: BoxDecoration(
+                border: Border.all( width: 1, color: Colors.transparent),
+                borderRadius: const BorderRadius.all(const Radius.circular(40)),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.purple,
+                    Colors.deepPurpleAccent,
+                  ],
+                )
+            ),
+          ),
+          PageView(
+            controller: _pageController,
+            onPageChanged: (newIndex) {
+              setState(() {
+                _selectedIndex = newIndex;
+              });
+            },
+            children: [
+              Page1(),
+              Page2(),
+            ],
+          ),
+        ],
+      ),
+      extendBody: true,
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.black,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            tooltip: 'Calls',
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.camera),
+            tooltip: 'Camera',
+            label: "page 2",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            tooltip: 'Chats',
+            label: "Messages",
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTap,
+      ),
+    );
+  }
+}
+/* working on --- uncomment if other fails
   @override
   Widget build(BuildContext context) {
     return Scaffold (
@@ -70,19 +148,13 @@ class _NavState extends State<Nav> {
                   )
               ),
             ),
-            Positioned.fill(
-              child: Align(
-                  alignment: Alignment.center,
-                  child: _pageOptions.elementAt(_selectedIndex),
-              ),
-            ),
+            _pageOptions[_selectedIndex],
             //_pageOptions.elementAt(_selectedIndex),
           ]
         ),
       ),
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
-        //currentIndex: 2,
         backgroundColor: Color(0x4400000000),
         elevation: 0,
         selectedItemColor: Colors.white,
@@ -110,6 +182,7 @@ class _NavState extends State<Nav> {
     );
   }
 }
+*/
 
 
 /*

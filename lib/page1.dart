@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'sidebar.dart';
 
-class Page2 extends StatelessWidget {
+class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      //backgroundColor: Colors.blue,
       appBar: AppBar(
-        title: Text("Welcome"),
+        title: Text("Page1"),
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         elevation: 0,
