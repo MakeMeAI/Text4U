@@ -3,12 +3,10 @@ import "page2.dart" as page2;
 import "sidebar.dart";
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -19,31 +17,82 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         canvasColor: Colors.transparent,
       ),
-      home: const PageViewer(),
+      home: Nav(),
     );
   }
 }
 
 
 
-class PageViewer extends StatefulWidget {
-  const PageViewer({super.key});
-
+class Nav extends StatefulWidget {
   @override
-  State<PageViewer> createState() => _PageViewState();
+  _NavState createState() => _NavState();
 }
 
-class _PageViewState extends State<PageViewer> {
-  final _controller = PageController(
-    initialPage: 0,
-  );
-
+class _NavState extends State<Nav> {
   @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+  Widget build(BuildContext context) {
+    return Scaffold (
+      drawer: sidebar(),
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        title: Text("Welcome back, NAME"),
+        backgroundColor: Color(0x4400000000),
+        elevation: 0,
+      ),
+      body: Center (
+        child: Container (
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.purple,
+                  Colors.blue,
+                ],
+              )
+          ),
+        ),
+      ),
+      extendBody: true,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+        backgroundColor: Color(0x4400000000),
+        elevation: 0,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.black,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            tooltip: 'Calls',
+            label: "Home",
+            //backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.camera),
+            tooltip: 'Camera',
+            label: "page 2",
+            //backgroundColor: Colors.green,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            tooltip: 'Chats',
+            label: "page 3",
+            //backgroundColor: Colors.red,
+          ),
+        ],
+        //currentIndex: _selectedIndex, ---- add back in - ali
+        //ADD BACK
+        //onTap: _onItemTapped,
+      ),
+    );
   }
+}
 
+/*
+
+class _NavState extends State<Nav> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -58,7 +107,7 @@ class _PageViewState extends State<PageViewer> {
           )
       ),
       child: PageView(
-      controller: _controller,
+      //controller: _controller,
       children: [
         _MyHomePageState(),
          page2.Page2(),
@@ -66,14 +115,13 @@ class _PageViewState extends State<PageViewer> {
 
     ),
     );
+
   }
 }
+*/
 
-
-
+/*
 class _MyHomePageState extends StatelessWidget {
-  int _selectedIndex = 0;
-
   //FIGURE OUT WHY WRONG
   // void _onItemTapped(int index) {
   //   setState(() {
@@ -104,7 +152,7 @@ class _MyHomePageState extends StatelessWidget {
 
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1,
+        currentIndex: 0,
         backgroundColor: Color(0x4400000000),
         elevation: 0,
         selectedItemColor: Colors.white,
@@ -136,3 +184,4 @@ class _MyHomePageState extends StatelessWidget {
     );
   }
 }
+*/
