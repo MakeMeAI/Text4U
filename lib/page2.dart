@@ -6,9 +6,8 @@ class Page2 extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      //backgroundColor: Colors.blue,
       appBar: AppBar(
-        title: Text("Welcome"),
+        title: Text("page 2 stuff"),
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         elevation: 0,

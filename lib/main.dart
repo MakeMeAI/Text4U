@@ -43,40 +43,49 @@ class _NavState extends State<Nav> {
   void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
+      /*
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => _pageOptions[index]),
       );
+       */
+      _pageController.animateToPage(index,
+          duration: Duration(milliseconds: 300),
+          curve: Curves.easeInOut);
     });
   }
 
   // delete if fails
   @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold (
-      drawer: sidebar(),
+      //drawer: sidebar(),
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        title: Text("Welcome back, NAME"),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      //appBar: AppBar(
+        //title: Text("Welcome back, NAME"),
+        //backgroundColor: Colors.transparent,
+        //elevation: 0,
+      //),
       body: Stack (
         children: <Widget> [
           Container(
             decoration: BoxDecoration(
-                border: Border.all( width: 1, color: Colors.transparent),
-                borderRadius: const BorderRadius.all(const Radius.circular(40)),
                 gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.purple,
-                    Colors.deepPurpleAccent,
-                  ],
-                )
-            ),
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.purple,
+                  Colors.blue,
+                ],
+              )
+           ),
           ),
           PageView(
             controller: _pageController,
