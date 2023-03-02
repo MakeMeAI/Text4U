@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class Nav extends StatefulWidget {
   @override
   _NavState createState() => _NavState();
@@ -46,6 +45,36 @@ class _NavState extends State<Nav> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _submitForm() async {
+    final name = _nameController.text;
+
+    try {
+      final response = await postData(name);
+
+      if (response.statusCode == 200) {
+        final data = convert.jsonDecode(response.body);
+        final message = data['message'];
+        // Do something with the response data
+        print(message);
+      } else {
+        // Handle error
+        print('Request failed with status: ${response.statusCode}.');
+      }
+    } catch (e) {
+      // Handle network error
+      print('Network error: $e');
+    }
   }
 
 
