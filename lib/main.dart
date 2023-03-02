@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import "page2.dart" as page2;
-import 'package:text4u/helper/requests.dart';
+import 'package:text4u/helper/requests.dart' as requests;
 import "sidebar.dart";
 
 void main() {
@@ -55,24 +55,20 @@ class _NavState extends State<Nav> {
     _nameController.dispose();
     super.dispose();
   }
-
+  var message;
   Future<void> _submitForm() async {
     final name = _nameController.text;
 
     try {
-      final response = await postData(name);
+      final response = await requests.postData(name);
 
       if (response.statusCode == 200) {
         final data = convert.jsonDecode(response.body);
-        final message = data['message'];
-        // Do something with the response data
-        print(message);
+        message = data['message'];
       } else {
-        // Handle error
         print('Request failed with status: ${response.statusCode}.');
       }
     } catch (e) {
-      // Handle network error
       print('Network error: $e');
     }
   }
@@ -110,6 +106,19 @@ class _NavState extends State<Nav> {
                   child: _pageOptions.elementAt(_selectedIndex),
               ),
             ),
+            TextField(
+              controller: _nameController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Enter a name',
+              ),
+            ),
+            ElevatedButton(
+              onPressed: _submitForm,
+              child: const Text('Send Data'),
+            ),
+            const SizedBox(height: 20),
+            Text(message),
             //_pageOptions.elementAt(_selectedIndex),
           ]
         ),
