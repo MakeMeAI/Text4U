@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:text4u/settings.dart';
 
 class sidebar extends StatelessWidget {
   @override
@@ -38,10 +39,13 @@ class sidebar extends StatelessWidget {
                 ),
             ),
           ),
-          CustomListTile(Icons.favorite,'Favorites', (){Navigator.pop(context);}),
-          CustomListTile(Icons.auto_graph, 'Statistics', ()=>{}),
-          CustomListTile(Icons.verified_user,'Profile', ()=>{}),
-          CustomListTile(Icons.settings,'Settings', ()=>{})
+          CustomListTile(Icons.favorite,'Favorites', ()=>{Navigator.pop(context)}),
+          CustomListTile(Icons.auto_graph, 'Statistics', ()=>{Navigator.pop(context)}),
+          CustomListTile(Icons.verified_user,'Profile', ()=>{Navigator.pop(context)}),
+          CustomListTile(Icons.settings,'Settings', ()=> {
+            Navigator.push(context, new MaterialPageRoute(
+                builder: (context)=>SettingsPage()))}
+          )
         ],
       ),
       ),
@@ -53,7 +57,7 @@ class CustomListTile extends StatelessWidget{
 
   IconData icon;
   String text;
-  Function onTap;
+  VoidCallback onTap;
 
   CustomListTile(this.icon,this.text,this.onTap);
 
@@ -67,12 +71,13 @@ class CustomListTile extends StatelessWidget{
         ),
         child: InkWell(
           splashColor: Colors.purpleAccent.shade100,
-          onTap: () {
-            // Update the state of the app
-            // ...
-            // Then close the drawer
-            Navigator.pop(context);
-          }, //onTap, Doesnt work?
+          onTap: onTap,
+          //     () {
+          //   // Update the state of the app
+          //   // ...
+          //   // Then close the drawer
+          //   Navigator.pop(context);
+          // }, //onTap, Doesnt work?
           child: Container(
             height: 60,
             child: Row(
