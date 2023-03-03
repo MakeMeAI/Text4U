@@ -19,19 +19,24 @@ class sidebar extends StatelessWidget {
         ),
       child: ListView(
         children:[
-          UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.white70.withOpacity(0.2),
-              ),
-              accountName: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('User1', style: TextStyle(color: Colors.white, fontSize: 25.0)),
-              ),
-              accountEmail: Text('User1@gmail.com', style: TextStyle(color: Colors.white, fontSize: 15.0)),
-              currentAccountPicture: CircleAvatar(
-                child: ClipOval(
+          Container(
+            height: 200,
+            child: UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.white70.withOpacity(0.2),
                 ),
-              ),
+                accountName: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('User1', style: TextStyle(color: Colors.white, fontSize: 25.0)),
+                ),
+                accountEmail: Text('User1@gmail.com', style: TextStyle(color: Colors.white, fontSize: 15.0)),
+                currentAccountPicture: CircleAvatar(
+                  child: ClipOval(
+                    //Likely want to add MyClipper for size
+                    //But the oval is good for when we put a image inside here later
+                  ),
+                ),
+            ),
           ),
           CustomListTile(Icons.favorite,'Favorites', (){Navigator.pop(context);}),
           CustomListTile(Icons.auto_graph, 'Statistics', ()=>{}),
