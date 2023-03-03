@@ -88,10 +88,16 @@ class CustomListTile extends StatelessWidget{
                     Icon(icon, color:Colors.white70.withOpacity(0.7)),
                     Padding(
                       padding: const EdgeInsets.all(15.0),
-                      child: Text(text, style: TextStyle(
-                          color: Colors.white.withOpacity(0.8),
-                          fontSize: 20.0
-                      ),),
+                      child: Hero(
+                        tag: 'title-${text}' ,
+                        child: Material(
+                          type: MaterialType.transparency,
+                          child: Text(text, style: TextStyle(
+                              color: Colors.white.withOpacity(0.8),
+                              fontSize: 20.0
+                          ),),
+                        ),
+                      ),
                     ),
                   ],
                 ),

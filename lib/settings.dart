@@ -20,7 +20,17 @@ class SettingsPage extends StatelessWidget {
                 )
             ),
           child: Center(
-            child: Text('Very legit settings page'),
+            child: Hero(
+              tag: 'title-Settings' ,
+              child: Material(
+                type: MaterialType.transparency,
+                child: Text('Settings', style: TextStyle(
+                    color: Colors.white.withOpacity(0.8),
+                    fontSize: 20.0
+                ),),
+              ),
+            ),
+            //child: Text('Very legit settings page'),
           )
         ),
       ),
