@@ -34,6 +34,7 @@ class sidebar extends StatelessWidget {
               ),
           ),
           CustomListTile(Icons.favorite,'Favorites', (){Navigator.pop(context);}),
+          CustomListTile(Icons.auto_graph, 'Statistics', ()=>{}),
           CustomListTile(Icons.verified_user,'Profile', ()=>{}),
           CustomListTile(Icons.settings,'Settings', ()=>{})
         ],
@@ -60,7 +61,7 @@ class CustomListTile extends StatelessWidget{
           border: Border(bottom: BorderSide(color: Colors.white54.withOpacity(0.4)))
         ),
         child: InkWell(
-          splashColor: Colors.pinkAccent,
+          splashColor: Colors.purpleAccent.shade100,
           onTap: () {
             // Update the state of the app
             // ...
