@@ -32,9 +32,11 @@ class Nav extends StatefulWidget {
   _NavState createState() => _NavState();
 }
 
-
 class _NavState extends State<Nav> {
   int _selectedIndex = 0;
+  String name = "";
+  TextEditingController nameController = TextEditingController();
+
   final List<Widget> _pageOptions = <Widget>[
     const Text("Home"),
     const Text("Page2"),
@@ -46,33 +48,6 @@ class _NavState extends State<Nav> {
       _selectedIndex = index;
     });
   }
-
-  final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    super.dispose();
-  }
-  var message;
-  Future<void> _submitForm() async {
-    final name = _nameController.text;
-
-    try {
-      final response = await requests.postData(name);
-
-      if (response.statusCode == 200) {
-        final data = convert.jsonDecode(response.body);
-        message = data['message'];
-      } else {
-        print('Request failed with status: ${response.statusCode}.');
-      }
-    } catch (e) {
-      print('Network error: $e');
-    }
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -88,37 +63,67 @@ class _NavState extends State<Nav> {
       body: Center (
         child: Stack (
           children: <Widget> [
-            Container (
+            Container(
               decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Colors.purple,
-                      Colors.blue,
-                    ],
-                  )
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.purple,
+                    Colors.blue,
+                  ],
+                ),
               ),
             ),
             Positioned.fill(
               child: Align(
-                  alignment: Alignment.center,
-                  child: _pageOptions.elementAt(_selectedIndex),
+                alignment: Alignment.center,
+                child: _pageOptions.elementAt(_selectedIndex),
               ),
             ),
-            TextField(
-              controller: _nameController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter a name',
+            Container(
+              margin: const EdgeInsets.only(top: 0.0),
+              child: Align(
+                alignment: Alignment.center,
+                child: FractionalTranslation(
+                  translation: const Offset(0.0, -1.0),
+                  child: TextField(
+                    cursorColor: Colors.white,
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      labelText: "Name",
+                      hintText: "Please Enter Your Name ",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                        borderSide: const BorderSide(
+                          color: Colors.white,
+                        ),
+                      ),
+                      labelStyle: const TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    keyboardType: TextInputType.text,
+                  ),
+                ),
               ),
             ),
-            ElevatedButton(
-              onPressed: _submitForm,
-              child: const Text('Send Data'),
+            Positioned(
+              top: MediaQuery.of(context).size.height / 2 + 50,
+              left: MediaQuery.of(context).size.width / 2 - 50,
+              child: Text("Name: " + name.toString()),
             ),
-            const SizedBox(height: 20),
-            Text(message),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    name = nameController.text;
+                    var data = requests.postData(nameController.text);
+                  });
+                },
+                child: Text("Submit"),
+              ),
+            ),
             //_pageOptions.elementAt(_selectedIndex),
           ]
         ),

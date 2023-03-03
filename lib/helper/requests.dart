@@ -4,7 +4,7 @@ import 'dart:convert' as convert;
 
 Future<http.Response> postData(String name) {
   return http.post(
-    Uri.parse('http://localhost:5000/'),
+    Uri.parse('http://0.0.0.0:5000/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
