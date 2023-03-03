@@ -56,7 +56,7 @@ class _NavState extends State<Nav> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: Text("Welcome back, NAME"),
+        title: Text("Welcome back $name"),
         backgroundColor: Color(0x4400000000),
         elevation: 0,
       ),
@@ -115,12 +115,14 @@ class _NavState extends State<Nav> {
             ),
             Center(
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  var response = await requests.postData(nameController.text);
+                  var data = convert.jsonDecode(response.body);
                   setState(() {
-                    name = nameController.text;
-                    var data = requests.postData(nameController.text);
+                    name = data['message'];
                   });
                 },
+
                 child: Text("Submit"),
               ),
             ),
