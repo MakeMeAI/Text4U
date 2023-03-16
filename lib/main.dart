@@ -1,5 +1,5 @@
 import "dart:convert";
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import "page2.dart" as page2;
 import "request2.dart";
@@ -44,7 +44,6 @@ class _NavState extends State<Nav> {
     });
   }
   String url = '';
-  var data;
   String output = 'Initial Output';
   @override
   Widget build(BuildContext context) {
@@ -58,7 +57,9 @@ class _NavState extends State<Nav> {
         elevation: 0,
       ),
       body: Center(
-        child: Stack(children: <Widget>[
+        child: Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
           Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -73,25 +74,26 @@ class _NavState extends State<Nav> {
           Positioned.fill(
             child: Align(
               alignment: Alignment.center,
-              child: _pageOptions.elementAt(_selectedIndex),
+              //child: _pageOptions.elementAt(_selectedIndex),
             ),
           ),
           //_pageOptions.elementAt(_selectedIndex),
           TextField(
             onChanged: (value) {
-              url = 'http://10.0.2.2:5000/api?query='+value.toString();
-          },
+              url = 'http://10.0.2.2:5000/api?query=' + value.toString();
+            },
           ),
-          TextButton(
-              onPressed: () async {
-                data = await jsonDecode(fetchdata(url));
-                setState(() {
-                  output = data['output'];
+              TextButton(
+                  onPressed: () async {
+                    var data = await fetchdata(url);
+                    var decoded = json.decode(data);
+                    setState(() {
+                      output = decoded['output'];
+                    });
+                  },
+                  child: Text('Fetch ASCII Value')),
+              Text(output)
 
-                });
-          },
-          child: Text('Fetch ASCII Value')),
-          Text(output)
         ]),
       ),
       extendBody: true,

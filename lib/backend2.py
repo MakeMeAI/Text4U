@@ -5,6 +5,7 @@ app = Flask(__name__)
 @app.route('/api', methods = ['GET'])
 def returnascii():
     d = {}
+    answer = 'a';
     inputchr = str(request.args['query'])
     answer = str(ord(inputchr))
     d['output'] = answer
