@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          // App Theme (1)
+        // App Theme (1)
         primarySwatch: Colors.blue,
         canvasColor: Colors.transparent,
       ),
@@ -22,12 +22,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class Nav extends StatefulWidget {
   @override
   _NavState createState() => _NavState();
 }
-
 
 class _NavState extends State<Nav> {
   int _selectedIndex = 0;
@@ -43,10 +41,9 @@ class _NavState extends State<Nav> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold (
+    return Scaffold(
       drawer: sidebar(),
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
@@ -55,30 +52,27 @@ class _NavState extends State<Nav> {
         backgroundColor: Color(0x4400000000),
         elevation: 0,
       ),
-      body: Center (
-        child: Stack (
-          children: <Widget> [
-            Container (
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Colors.purple,
-                      Colors.blue,
-                    ],
-                  )
-              ),
+      body: Center(
+        child: Stack(children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.purple,
+                Colors.blue,
+              ],
+            )),
+          ),
+          Positioned.fill(
+            child: Align(
+              alignment: Alignment.center,
+              child: _pageOptions.elementAt(_selectedIndex),
             ),
-            Positioned.fill(
-              child: Align(
-                  alignment: Alignment.center,
-                  child: _pageOptions.elementAt(_selectedIndex),
-              ),
-            ),
-            //_pageOptions.elementAt(_selectedIndex),
-          ]
-        ),
+          ),
+          //_pageOptions.elementAt(_selectedIndex),
+        ]),
       ),
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
