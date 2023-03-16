@@ -1,5 +1,8 @@
+import "dart:convert";
+
 import 'package:flutter/material.dart';
 import "page2.dart" as page2;
+import "request2.dart";
 import "sidebar.dart";
 
 void main() {
@@ -40,7 +43,9 @@ class _NavState extends State<Nav> {
       _selectedIndex = index;
     });
   }
-
+  String url = '';
+  var data;
+  String output = 'Initial Output';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,6 +77,21 @@ class _NavState extends State<Nav> {
             ),
           ),
           //_pageOptions.elementAt(_selectedIndex),
+          TextField(
+            onChanged: (value) {
+              url = 'http://10.0.2.2:5000/api?query='+value.toString();
+          },
+          ),
+          TextButton(
+              onPressed: () async {
+                data = await jsonDecode(fetchdata(url));
+                setState(() {
+                  output = data['output'];
+
+                });
+          },
+          child: Text('Fetch ASCII Value')),
+          Text(output)
         ]),
       ),
       extendBody: true,
