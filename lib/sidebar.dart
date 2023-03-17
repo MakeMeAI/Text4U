@@ -6,7 +6,6 @@ class sidebar extends StatelessWidget {
     return Drawer(
       child: Container(
         decoration: BoxDecoration(
-
             border: Border.all( width: 1, color: Colors.transparent),
             borderRadius: const BorderRadius.all(const Radius.circular(40)),
             gradient: LinearGradient(
