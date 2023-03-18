@@ -63,7 +63,6 @@ class _PageViewState extends State<PageViewer> {
         _MyHomePageState(),
          page2.Page2(),
       ],
-
     ),
     );
   }
@@ -72,14 +71,7 @@ class _PageViewState extends State<PageViewer> {
 
 
 class _MyHomePageState extends StatelessWidget {
-  int _selectedIndex = 0;
 
-  //FIGURE OUT WHY WRONG
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +90,8 @@ class _MyHomePageState extends StatelessWidget {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Container (
+        child: CustomScrollView (
+
         ),
       ),
 
@@ -126,7 +119,6 @@ class _MyHomePageState extends StatelessWidget {
             label: '',
           ),
         ],
-        currentIndex: _selectedIndex,
         //ADD BACK
         //onTap: _onItemTapped,
       ), // This trailing comma makes auto-formatting nicer for build methods.
