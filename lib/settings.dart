@@ -20,20 +20,31 @@ class SettingsPage extends StatelessWidget {
                   ],
                 )
             ),
-          child: Center(
-            child: Hero(
-              tag: 'title-Settings' ,
-              child: Material(
-                type: MaterialType.transparency,
-                child: Text('Settings', style: TextStyle(
-                    color: Colors.white.withOpacity(0.8),
-                    fontSize: 20.0
-                ),),
+          child: ListView(
+            children: [
+              Hero(
+                tag: 'title-Settings' ,
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                      child: Text('Settings', style: TextStyle(
+                          color: Colors.white.withOpacity(0.8),
+                          fontSize: 30.0
+                      ),),
+                  ),
+                ),
               ),
-            ), //child: Text('Very legit settings page'),
-          )
+              CustomListTile(Icons.saved_search,'Text Size', ()=>{Navigator.pop(context)}, "hi", "helo", "sup"),
+              CustomListTile(Icons.text_fields,'Dyslexia Font', ()=>{Navigator.pop(context)}, "hi", "helo", "sup")
+            ],
+             //child: Text('Very legit settings page'),
+          ),
+
         ),
+
       ),
+
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.arrow_back_ios),
         onPressed: () {
@@ -60,17 +71,18 @@ class CustomListTile extends StatelessWidget{
     return Padding(
       padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 6.0),
       child: Container(
-        decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.white54.withOpacity(0.4)))
-        ),
+        // decoration: BoxDecoration(
+        //     border: Border(bottom: BorderSide(color: Colors.white54.withOpacity(0.4)))
+        // ),
         child: InkWell(
           splashColor: Colors.purpleAccent.shade100,
           child: Container(
-            height: 60,
+            padding: EdgeInsets.all(5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Row(
+                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Icon(icon, color:Colors.white70.withOpacity(0.7)),
                     Padding(
@@ -84,34 +96,40 @@ class CustomListTile extends StatelessWidget{
                       ),
                     ),
 // Here, default theme colors are used for activeBgColor, activeFgColor, inactiveBgColor and inactiveFgColor
-                    ToggleSwitch(
-                      initialLabelIndex: 0,
-                      activeFgColor: Colors.white,
-                      inactiveBgColor: Colors.grey,
-                      inactiveFgColor: Colors.white,
-                      totalSwitches: 3,
-                      icons: [
-                        Icons.keyboard_arrow_left,
-                        Icons.arrow_upward,
-                        Icons.keyboard_arrow_right
-                      ],
-                      borderColor: [Color(0xff3b5998), Color(0xff8b9dc3), Color(0xff00aeff), Color(0xff0077f2), Color(0xff962fbf), Color(0xff4f5bd5)],
-                      dividerColor: Colors.blueGrey,
-                      onToggle: (index) {
-                        print('switched to: $index');
-                      },
-                    ),
-                  ],
 
+                  ],
                 ),
+                ToggleSwitch(
+                  minWidth: 60.0,
+                  minHeight: 25.0,
+                  initialLabelIndex: 0,
+                  cornerRadius: 20.0,
+
+                  activeFgColor: Colors.black,
+                  inactiveBgColor: Colors.purple.shade400,
+                  inactiveFgColor: Colors.white,
+                  totalSwitches: 2,
+                  labels:["OFF","ON"],
+                  //labels:[on,off,extra],
+                  // icons: [
+                  //   Icons.keyboard_arrow_left,
+                  //   Icons.arrow_upward,
+                  //   Icons.keyboard_arrow_right
+                  // ],
+                  // borderColor: [Color(0xff773b98), Color(0xffbf63d9), Color(0xff724cc4), Color(0xff962fbf), Color(0xffbf63d9)],
+                  borderColor: [Color(0xff9545c0), Colors.purpleAccent],
+                  dividerColor: Colors.white38,
+                  activeBgColor:  [Colors.purpleAccent.shade100],
+                  onToggle: (index) {
+                    print('switched to: $index');
+                  },
+                )
               ],
+        ),
             ),
           ),
 
         ),
-      ),
-    );
+      );
   }
 }
-
-
