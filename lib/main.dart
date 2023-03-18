@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import "page2.dart" as page2;
-import "sidebar.dart";
+import 'package:text4u/convoBubble.dart' as contextBox;
+import 'ContactList.dart';
+import 'Sidebar.dart';
+import "Sidebar.dart";
 
 void main() {
   runApp(const MyApp());
@@ -80,19 +83,10 @@ class _MyHomePageState extends StatelessWidget {
       drawer: sidebar(),
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text("Welcome back, NAME"),
-        backgroundColor: Color(0x4400000000),
-        elevation: 0,
-      ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: CustomScrollView (
-
-        ),
+        child: ContactList(),
       ),
 
       extendBody: true,
