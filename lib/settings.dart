@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -43,4 +44,55 @@ class SettingsPage extends StatelessWidget {
     );
   }
 }
+
+class CustomListTile extends StatelessWidget{
+
+  IconData icon;
+  String text;
+  VoidCallback onTap;
+  String on;
+  String off;
+
+  CustomListTile(this.icon,this.text,this.onTap,this.on,this.off);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 6.0),
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.white54.withOpacity(0.4)))
+        ),
+        child: InkWell(
+          splashColor: Colors.purpleAccent.shade100,
+          child: Container(
+            height: 60,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Icon(icon, color:Colors.white70.withOpacity(0.7)),
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: Text(text, style: TextStyle(
+                            color: Colors.white.withOpacity(0.8),
+                            fontSize: 20.0
+                        ),),
+                      ),
+                    ),
+
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
