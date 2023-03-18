@@ -30,8 +30,7 @@ class SettingsPage extends StatelessWidget {
                     fontSize: 20.0
                 ),),
               ),
-            ),
-            //child: Text('Very legit settings page'),
+            ), //child: Text('Very legit settings page'),
           )
         ),
       ),
@@ -52,8 +51,9 @@ class CustomListTile extends StatelessWidget{
   VoidCallback onTap;
   String on;
   String off;
+  String extra;
 
-  CustomListTile(this.icon,this.text,this.onTap,this.on,this.off);
+  CustomListTile(this.icon,this.text,this.onTap,this.on,this.off,this.extra);
 
   @override
   Widget build(BuildContext context) {
@@ -83,12 +83,31 @@ class CustomListTile extends StatelessWidget{
                         ),),
                       ),
                     ),
-
+// Here, default theme colors are used for activeBgColor, activeFgColor, inactiveBgColor and inactiveFgColor
+                    ToggleSwitch(
+                      initialLabelIndex: 0,
+                      activeFgColor: Colors.white,
+                      inactiveBgColor: Colors.grey,
+                      inactiveFgColor: Colors.white,
+                      totalSwitches: 3,
+                      icons: [
+                        Icons.keyboard_arrow_left,
+                        Icons.arrow_upward,
+                        Icons.keyboard_arrow_right
+                      ],
+                      borderColor: [Color(0xff3b5998), Color(0xff8b9dc3), Color(0xff00aeff), Color(0xff0077f2), Color(0xff962fbf), Color(0xff4f5bd5)],
+                      dividerColor: Colors.blueGrey,
+                      onToggle: (index) {
+                        print('switched to: $index');
+                      },
+                    ),
                   ],
+
                 ),
               ],
             ),
           ),
+
         ),
       ),
     );
