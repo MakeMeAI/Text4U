@@ -57,7 +57,7 @@ class _NavState extends State<Nav> {
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: Text("Welcome back $name"),
-        backgroundColor: Color(0x4400000000),
+        backgroundColor: const Color(0x4400000000),
         elevation: 0,
       ),
       body: Center (
@@ -116,10 +116,13 @@ class _NavState extends State<Nav> {
             Center(
               child: ElevatedButton(
                 onPressed: () async {
+                  // setState(() {
+                  //   name = nameController.text;
+                  // });
                   var response = await requests.postData(nameController.text);
-                  var data = convert.jsonDecode(response.body);
+                  var jsonResponse = convert.jsonDecode(response.body);
                   setState(() {
-                    name = data['message'];
+                    name = jsonResponse['name'];
                   });
                 },
 
@@ -160,105 +163,3 @@ class _NavState extends State<Nav> {
     );
   }
 }
-
-
-/*
-class _NavState extends State<Nav> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-     decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.purple,
-              Colors.blue,
-            ],
-          )
-      ),
-      child: PageView(
-      //controller: _controller,
-      children: [
-        _MyHomePageState(),
-         page2.Page2(),
-      ],
-
-    ),
-    );
-
-  }
-}
-
-*/
-/*
-class _MyHomePageState extends StatefulWidget {
-  //FIGURE OUT WHY WRONG
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-  // }
-
-  @override
-  Widget build(BuildContext context) {
-    // Rerunning build (4)
-    return Scaffold(
-      drawer: sidebar(),
-      extendBodyBehindAppBar: true,
-      backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text("Welcome back, NAME"),
-        backgroundColor: Color(0x4400000000),
-        elevation: 0,
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Container (
-        ),
-      ),
-
-      extendBody: true,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        backgroundColor: Color(0x4400000000),
-        elevation: 0,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.black,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            tooltip: 'Calls',
-            label: "Home",
-            //backgroundColor: Colors.blue,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.camera),
-            tooltip: 'Camera',
-            label: "page 2",
-            //backgroundColor: Colors.green,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            tooltip: 'Chats',
-            label: "page 3",
-            //backgroundColor: Colors.red,
-          ),
-        ],
-        //currentIndex: _selectedIndex, ---- add back in - ali
-        //ADD BACK
-        //onTap: _onItemTapped,
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
-  }
-}
-*/
