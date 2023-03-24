@@ -35,8 +35,9 @@ class SettingsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              CustomListTile(Icons.saved_search,'Text Size', ()=>{Navigator.pop(context)}, "hi", "helo", "sup"),
-              CustomListTile(Icons.text_fields,'Dyslexia Font', ()=>{Navigator.pop(context)}, "hi", "helo", "sup")
+              CustomListTile(Icons.saved_search,'Text Size', 'Default', 'Large', ()=>{Navigator.pop(context)}),
+              CustomListTile(Icons.text_fields,'Dyslexia Font', 'Default', 'Dyslexia',
+                      ()=>{Navigator.pop(context)})
             ],
              //child: Text('Very legit settings page'),
           ),
@@ -59,12 +60,11 @@ class CustomListTile extends StatelessWidget{
 
   IconData icon;
   String text;
-  VoidCallback onTap;
   String on;
   String off;
-  String extra;
+  VoidCallback onTap;
 
-  CustomListTile(this.icon,this.text,this.onTap,this.on,this.off,this.extra);
+  CustomListTile(this.icon,this.text,this.on,this.off,this.onTap);
 
   @override
   Widget build(BuildContext context) {
@@ -110,18 +110,14 @@ class CustomListTile extends StatelessWidget{
                   inactiveFgColor: Colors.white,
                   totalSwitches: 2,
                   labels:["OFF","ON"],
-                  //labels:[on,off,extra],
-                  // icons: [
-                  //   Icons.keyboard_arrow_left,
-                  //   Icons.arrow_upward,
-                  //   Icons.keyboard_arrow_right
-                  // ],
                   // borderColor: [Color(0xff773b98), Color(0xffbf63d9), Color(0xff724cc4), Color(0xff962fbf), Color(0xffbf63d9)],
                   borderColor: [Color(0xff9545c0), Colors.purpleAccent],
                   dividerColor: Colors.white38,
                   activeBgColor:  [Colors.purpleAccent.shade100],
                   onToggle: (index) {
+                    //What switch does
                     print('switched to: $index');
+                    onTap: onTap;
                   },
                 )
               ],

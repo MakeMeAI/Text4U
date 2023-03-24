@@ -17,6 +17,12 @@ class MyApp extends StatelessWidget {
           // App Theme (1)
         primarySwatch: Colors.blue,
         canvasColor: Colors.transparent,
+        // Font Size
+        textTheme: Theme.of(context).textTheme.apply(
+          fontSizeFactor: 1.0,
+          // fontSizeFactor: 1.5,
+          fontSizeDelta: 10.0,
+        ),
       ),
       home: Nav(),
     );
