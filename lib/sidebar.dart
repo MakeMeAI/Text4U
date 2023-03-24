@@ -9,7 +9,7 @@ class sidebar extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all( width: 1, color: Colors.transparent),
             borderRadius: const BorderRadius.all(const Radius.circular(40)),
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
