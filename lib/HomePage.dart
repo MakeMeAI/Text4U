@@ -4,8 +4,15 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:text4u/helper/requests.dart' as requests;
 
-class HomePage extends StatelessWidget {
-  String name = "";
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+
+class _HomePageState extends State<HomePage> {
+  String name = '';
   TextEditingController nameController = TextEditingController();
 
 
@@ -16,7 +23,7 @@ class HomePage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: Text("Welcome back, $name"),
+        title: Text("Welcome back, ${name ?? ''}"),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -65,7 +72,7 @@ class HomePage extends StatelessWidget {
               Positioned(
                 top: MediaQuery.of(context).size.height / 2 + 50,
                 left: MediaQuery.of(context).size.width / 2 - 50,
-                child: Text("Name: " + name.toString()),
+                child: Text("Name: ${name.toString()}"),
               ),
               Center(
                 child: ElevatedButton(
@@ -74,8 +81,8 @@ class HomePage extends StatelessWidget {
                     var data = convert.jsonDecode(response.body);
                     var jsonResponse = convert.jsonDecode(response.body);
                     setState(() {
-                      name = data['message'];
-                      name = jsonResponse['name'];
+                      name = data['message'] ?? '';
+                      name = jsonResponse['name'] ?? '';
                     });
                   },
 
