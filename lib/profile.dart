@@ -6,12 +6,14 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfileEdit extends State<ProfilePage> {
+  bool isObscurePassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white70.withOpacity(0.5),
       body: Stack(
         children: [
+          // container - background color
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -24,6 +26,7 @@ class _ProfileEdit extends State<ProfilePage> {
               ),
             ),
           ),
+          // container - for the profile icon
           Container(
             padding: EdgeInsets.only(left: 15, top: 20, right: 15),
             child: ListView(
@@ -68,6 +71,9 @@ class _ProfileEdit extends State<ProfilePage> {
                     ],
                   ),
                 ),
+                buildTextField("Full Name", "Enter name", false),
+                buildTextField("Email", "Enter email", false),
+                buildTextField("Password", "Enter password", true),
               ],
             ),
           ),
@@ -81,4 +87,37 @@ class _ProfileEdit extends State<ProfilePage> {
       ),
     );
   }
+
+  Widget buildTextField(String labelText, String placeholder, bool isPassword) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 30),
+      child: TextField (
+        obscureText: isPassword ? isObscurePassword : false,
+        decoration: InputDecoration(
+          suffixIcon: isPassword ?
+              IconButton (
+                icon: Icon(Icons.remove_red_eye, color: Colors.grey),
+                onPressed: () {
+                  setState(() {
+                    isObscurePassword = !isObscurePassword;
+                  });
+                }
+              ): null,
+              contentPadding: EdgeInsets.only(bottom: 5),
+              labelText: labelText,
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                hintText: placeholder,
+                hintStyle: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey
+                )
+        ),
+      )
+    );
+  }
+
+
+
+
 }
