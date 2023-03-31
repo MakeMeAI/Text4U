@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:text4u/settings.dart';
+import 'package:text4u/profile.dart';
 
 class sidebar extends StatelessWidget {
   @override
@@ -41,11 +42,13 @@ class sidebar extends StatelessWidget {
           ),
           CustomListTile(Icons.favorite,'Favorites', ()=>{Navigator.pop(context)}),
           CustomListTile(Icons.auto_graph, 'Statistics', ()=>{Navigator.pop(context)}),
-          CustomListTile(Icons.verified_user,'Profile', ()=>{Navigator.pop(context)}),
+          CustomListTile(Icons.verified_user,'Profile', ()=>{
+            // NOTE: CURRENTLY POPPING OUT OF THE SETTING LOCATION - NEED FIX!!
+            Navigator.push(context, new MaterialPageRoute(
+                builder: (context)=>ProfilePage()))}),
           CustomListTile(Icons.settings,'Settings', ()=> {
             Navigator.push(context, new MaterialPageRoute(
-                builder: (context)=>SettingsPage()))}
-          )
+                builder: (context)=>SettingsPage()))})
         ],
       ),
       ),

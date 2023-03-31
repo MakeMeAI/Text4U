@@ -8,7 +8,8 @@ def receive_data():
     data = request.get_json()
     name = data['name']
     # Perform some action with the name
-    response_data = {'name': f'Hello, {name}!'}
+    #response_data = {'name': f'Hello, {name}!'}
+    response_data = {'name': f'{name}!'}
     return jsonify(response_data)
 
 

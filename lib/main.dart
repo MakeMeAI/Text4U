@@ -3,7 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:text4u/helper/requests.dart' as requests;
 import "page2.dart";
-import "page1.dart";
+import "page3.dart";
+import "HomePage.dart";
 import "sidebar.dart";
 
 void main() {
@@ -34,26 +35,20 @@ class Nav extends StatefulWidget {
 }
 
 class _NavState extends State<Nav> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
   String name = "";
   TextEditingController nameController = TextEditingController();
-  PageController _pageController = PageController(initialPage: 0);
+  PageController _pageController = PageController(initialPage: 1);
 
   final List<Widget> _pageOptions = <Widget>[
-    Page1(),
     const Page2(),
+    HomePage(),
     const Text("Messages"),
   ];
 
   void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
-      /*
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => _pageOptions[index]),
-      );
-       */
       _pageController.animateToPage(index,
           duration: Duration(milliseconds: 300),
           curve: Curves.easeInOut);
@@ -74,11 +69,6 @@ class _NavState extends State<Nav> {
       //drawer: sidebar(),
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      //appBar: AppBar(
-        //title: Text("Welcome back, NAME"),
-        //backgroundColor: Colors.transparent,
-        //elevation: 0,
-      //),
       body: Stack (
         children: <Widget> [
           Container(
@@ -101,8 +91,9 @@ class _NavState extends State<Nav> {
               });
             },
             children: [
-              Page1(),
               Page2(),
+              HomePage(),
+              Page3(),
             ],
           ),
         ],
@@ -115,14 +106,14 @@ class _NavState extends State<Nav> {
         unselectedItemColor: Colors.black,
         items: [
           BottomNavigationBarItem(
+            icon: Icon(Icons.camera),
+            tooltip: 'Camera',
+            label: "Page 2",
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.home),
             tooltip: 'Calls',
             label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.camera),
-            tooltip: 'Camera',
-            label: "page 2",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),

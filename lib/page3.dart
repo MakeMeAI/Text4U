@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'sidebar.dart';
 
-class Page1 extends StatelessWidget {
+class Page3 extends StatelessWidget {
+  const Page3({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: sidebar(),
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: Text("Welcome back, NAME"),
+        title: Text("page 3"),
         backgroundColor: Colors.transparent,
-        //automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         elevation: 0,
       ),
       body: Center (
