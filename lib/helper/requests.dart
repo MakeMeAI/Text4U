@@ -13,3 +13,12 @@ Future<http.Response> postData(String name) {
     }),
   );
 }
+
+
+// user request passed to AI and AI return -- use once data is traiend and ready
+Future<String> generateText(String prompt) async {
+  var url = Uri.parse('http://localhost:5000/generate_text');
+  var response = await http.post(url, body: convert.jsonEncode({'prompt': prompt}));
+  var jsonResponse = convert.jsonDecode(response.body);
+  return jsonResponse['generated_text'];
+}
