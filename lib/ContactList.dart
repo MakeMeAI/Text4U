@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'convoBubble.dart';
 
+import 'conversationPage.dart';
+
 class ContactList extends StatelessWidget {
   //dummy data till we have actual info from backend
   final List<String> contacts = [
@@ -21,6 +23,13 @@ class ContactList extends StatelessWidget {
     'Chris Lee',
     'Anna Taylor',
     'Richard White',
+  ];
+//more dummy data
+  final List<List<String>> chatData = [
+    ['Alice', 'Hi there!'],
+    ['Bob', 'Hey Alice, what\'s up?'],
+    ['Alice', 'Not much, just testing out this chat display.'],
+    ['Bob', 'Looks cool!'],
   ];
 
   @override
@@ -41,7 +50,14 @@ class ContactList extends StatelessWidget {
                 contactName: contacts[index],
                 lastMessage: 'Hello, how are you?',
                 onPressed: () {
-                  print('Pressed ${contacts[index]}');
+                  // print('Pressed ${contacts[index]}');
+                  Widget build(BuildContext context) {
+                    return MaterialApp(
+                      title: 'Chat Display',
+                      home: ChatDisplay(chatData: chatData),
+                    );
+                  }
+
                 },
                 // color: Colors.blue,
               );
