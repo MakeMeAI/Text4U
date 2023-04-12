@@ -5,13 +5,13 @@ import 'dart:convert' as convert;
 import 'package:text4u/helper/requests.dart' as requests;
 
 
-class HomePage extends StatefulWidget {
+class landingPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _landingPageState createState() => _landingPageState();
 }
 
 
-class _HomePageState extends State<HomePage> {
+class _landingPageState extends State<landingPage> {
   String name = '';
   TextEditingController nameController = TextEditingController();
 
