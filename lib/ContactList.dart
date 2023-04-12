@@ -1,8 +1,6 @@
 
 import 'package:flutter/material.dart';
-
 import 'convoBubble.dart';
-
 import 'conversationPage.dart';
 
 class ContactList extends StatelessWidget {
@@ -50,13 +48,19 @@ class ContactList extends StatelessWidget {
                 contactName: contacts[index],
                 lastMessage: 'Hello, how are you?',
                 onPressed: () {
-                  // print('Pressed ${contacts[index]}');
-                  Widget build(BuildContext context) {
-                    return MaterialApp(
-                      title: 'Chat Display',
-                      home: ChatDisplay(chatData: chatData),
-                    );
-                  }
+                  Navigator.push(context, new MaterialPageRoute(
+                    builder: (context)=>ChatDisplay(chatData: chatData)));
+
+
+
+                   print('Pressed ${contacts[index]}');
+                  // Widget build(BuildContext context) {
+                  //   return MaterialApp(
+                  //
+                  //     title: 'Chat Display',
+                  //     home: ChatDisplay(chatData: chatData),
+                  //   );
+                  // }
 
                 },
                 // color: Colors.blue,
