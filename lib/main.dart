@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import "page2.dart" as page2;
 import 'package:text4u/convoBubble.dart' as contextBox;
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
+import 'package:text4u/helper/requests.dart' as requests;
+import "page2.dart";
+import "HomePage.dart";
 import 'ContactList.dart';
 import 'Sidebar.dart';
-import "Sidebar.dart";
 
 void main() {
   runApp(const MyApp());
@@ -15,107 +18,142 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return new MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
           // App Theme (1)
         primarySwatch: Colors.blue,
         canvasColor: Colors.transparent,
       ),
-      home: const PageViewer(),
+      home: HomePage(),
     );
   }
 }
 
 
 
-class PageViewer extends StatefulWidget {
-  const PageViewer({super.key});
+// class Nav extends StatelessWidget {
+//   //old declration locations
+//   String name = "";
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return new Container(
+//      decoration: BoxDecoration(
+//           gradient: LinearGradient(
+//             begin: Alignment.topLeft,
+//             end: Alignment.bottomRight,
+//             colors: [
+//               Colors.purple,
+//               Colors.blue,
+//             ],
+//           )
+//       ),
+//       child: HomePage(),
+//     );
+//   }
+// }
 
+class HomePage extends StatefulWidget {
   @override
-  State<PageViewer> createState() => _PageViewState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _PageViewState extends State<PageViewer> {
-  final _controller = PageController(
-    initialPage: 0,
-  );
+class _MyHomePageState extends State<HomePage> {
+  int _selectedIndex = 1;
+  TextEditingController nameController = TextEditingController();
+  PageController _pageController = PageController(initialPage: 1);
+
+
+
+  final List<Widget> _pageOptions = <Widget>[
+    const Page2(),
+    HomePage(),
+    const Text("Messages"),
+  ];
+
 
   @override
+  void _onItemTap(int index) {
+    setState(() {
+      _selectedIndex = index;
+      _pageController.animateToPage(index,
+          duration: Duration(milliseconds: 300),
+          curve: Curves.easeInOut);
+    });
+  }
+
+  // delete if fails
+  @override
   void dispose() {
-    _controller.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-     decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.purple,
-              Colors.blue,
-            ],
-          )
-      ),
-      child: PageView(
-      controller: _controller,
-      children: [
-        _MyHomePageState(),
-         page2.Page2(),
-      ],
-    ),
-    );
-  }
-}
-
-
-
-class _MyHomePageState extends StatelessWidget {
-
-
-  @override
-  Widget build(BuildContext context) {
     // Rerunning build (4)
-    return Scaffold(
-      drawer: sidebar(),
+    return new Scaffold (
+      //drawer: sidebar(),
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: ContactList(),
+      body: Stack (
+        children: <Widget> [
+          Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.purple,
+                  Colors.blue,
+                ],
+              )
+           ),
+          ),
+          PageView(
+            controller: _pageController,
+            onPageChanged: (newIndex) {
+              setState(() {
+                _selectedIndex = newIndex;
+              });
+            },
+            children: [
+              Page2(),
+              landingPage(),
+              ContactList(),
+            ],
+          ),
+        ],
       ),
-
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0x4400000000),
+        backgroundColor: Colors.transparent,
         elevation: 0,
         selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
-
-          BottomNavigationBarItem(
-            icon: Icon(Icons.call),
-            tooltip: 'Calls',
-            label: '',
-          ),
+        unselectedItemColor: Colors.black,
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.camera),
             tooltip: 'Camera',
-            label: '',
+            label: "Page 2",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            tooltip: 'Calls',
+            label: "Home",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
             tooltip: 'Chats',
-            label: '',
+            label: "Messages",
           ),
         ],
-        //ADD BACK
-        //onTap: _onItemTapped,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTap,
+
       ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+      );
   }
 }
+
