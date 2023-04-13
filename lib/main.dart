@@ -7,6 +7,7 @@ import "page2.dart";
 import "HomePage.dart";
 import 'ContactList.dart';
 import 'Sidebar.dart';
+import 'Splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         canvasColor: Colors.transparent,
       ),
-      home: HomePage(),
+      //home: HomePage(),
+      home: Splash(),
     );
   }
 }
