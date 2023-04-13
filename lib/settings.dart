@@ -35,7 +35,11 @@ class SettingsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              CustomListTile(Icons.saved_search,'Text Size', 'Default', 'Large', ()=>{Navigator.pop(context)}),
+              CustomListTile(Icons.saved_search,'Text Size', 'Default', 'Large',
+                      ()=>{
+
+                      }
+              ),
               CustomListTile(Icons.text_fields,'Dyslexia Font', 'Default', 'Dyslexia',
                       ()=>{Navigator.pop(context)})
             ],

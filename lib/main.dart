@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import "package:google_fonts/google_fonts.dart";
 import "page2.dart";
 import "page1.dart";
 import "sidebar.dart";
+
 
 void main() {
   runApp(MyApp());
@@ -15,15 +17,21 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
           // App Theme (1)
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
         canvasColor: Colors.transparent,
         // Font Size
         textTheme: Theme.of(context).textTheme.apply(
+          //headline2: GoogleFonts.lexend()
+          //text: GoogleFonts.lexend(),
           fontSizeFactor: 1.0,
           // fontSizeFactor: 1.5,
           fontSizeDelta: 10.0,
         ),
       ),
+      darkTheme: ThemeData(
+          brightness: Brightness.dark
+      ),
+      themeMode: ThemeMode.system,
       home: Nav(),
     );
   }
