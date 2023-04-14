@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:text4u/convoBubble.dart' as contextBox;
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:text4u/helper/requests.dart' as requests;
 import "page2.dart";
-import "page3.dart";
 import "HomePage.dart";
-import "sidebar.dart";
+import 'ContactList.dart';
+import 'Sidebar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,28 +18,53 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return new MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
           // App Theme (1)
         primarySwatch: Colors.blue,
         canvasColor: Colors.transparent,
       ),
-      home: Nav(),
+      home: HomePage(),
     );
   }
 }
 
-class Nav extends StatefulWidget {
+
+
+// class Nav extends StatelessWidget {
+//   //old declration locations
+//   String name = "";
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return new Container(
+//      decoration: BoxDecoration(
+//           gradient: LinearGradient(
+//             begin: Alignment.topLeft,
+//             end: Alignment.bottomRight,
+//             colors: [
+//               Colors.purple,
+//               Colors.blue,
+//             ],
+//           )
+//       ),
+//       child: HomePage(),
+//     );
+//   }
+// }
+
+class HomePage extends StatefulWidget {
   @override
-  _NavState createState() => _NavState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _NavState extends State<Nav> {
+class _MyHomePageState extends State<HomePage> {
   int _selectedIndex = 1;
-  String name = "";
   TextEditingController nameController = TextEditingController();
   PageController _pageController = PageController(initialPage: 1);
+
+
 
   final List<Widget> _pageOptions = <Widget>[
     const Page2(),
@@ -46,6 +72,8 @@ class _NavState extends State<Nav> {
     const Text("Messages"),
   ];
 
+
+  @override
   void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
@@ -54,7 +82,6 @@ class _NavState extends State<Nav> {
           curve: Curves.easeInOut);
     });
   }
-
 
   // delete if fails
   @override
@@ -65,7 +92,8 @@ class _NavState extends State<Nav> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold (
+    // Rerunning build (4)
+    return new Scaffold (
       //drawer: sidebar(),
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
@@ -92,8 +120,8 @@ class _NavState extends State<Nav> {
             },
             children: [
               Page2(),
-              HomePage(),
-              Page3(),
+              landingPage(),
+              ContactList(),
             ],
           ),
         ],
@@ -123,7 +151,9 @@ class _NavState extends State<Nav> {
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTap,
-      ),
-    );
+
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+      );
   }
 }
+
