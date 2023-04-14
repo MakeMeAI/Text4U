@@ -8,18 +8,18 @@ class SettingsPage extends StatelessWidget {
       backgroundColor: Colors.white70.withOpacity(0.2),
       body: Center (
         child: Container (
-            decoration: BoxDecoration(
-                border: Border.all( width: 1, color: Colors.transparent),
-                borderRadius: const BorderRadius.all(const Radius.circular(40)),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.purple.shade500,
-                    Colors.deepPurpleAccent.shade100,
-                  ],
-                )
-            ),
+          decoration: BoxDecoration(
+              border: Border.all( width: 1, color: Colors.transparent),
+              borderRadius: const BorderRadius.all(const Radius.circular(40)),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.purple.shade500,
+                  Colors.deepPurpleAccent.shade100,
+                ],
+              )
+          ),
           child: ListView(
             children: [
               Hero(
@@ -35,13 +35,48 @@ class SettingsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              CustomListTile(Icons.saved_search,'Text Size', 'Default', 'Large',
-                      ()=>{
-
-                      }
+              Material(
+                type: MaterialType.transparency,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Accessibility',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.8),
+                      fontSize: 25.0
+                  ),),
+                ),
               ),
-              CustomListTile(Icons.text_fields,'Dyslexia Font', 'Default', 'Dyslexia',
-                      ()=>{Navigator.pop(context)})
+              CustomListTile(Icons.saved_search,'Text Size', 'OFF', 'ON',
+                      ()=>{  }
+              ),
+              CustomListTile(Icons.text_fields,'Dyslexia Font', 'OFF', 'ON',
+                      ()=>{Navigator.pop(context)}
+              ),
+              CustomListTile(Icons.light_mode_outlined,'Light/Dark Mode', 'LIGHT', 'DARK',
+                      ()=>{  }
+              ),
+              CustomListTile(Icons.contrast,'Contrast', 'OFF', 'ON',
+                      ()=>{  }
+              ),
+              Material(
+                type: MaterialType.transparency,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Messages',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: 25.0
+                    ),),
+                ),
+              ),
+              CustomListTile(Icons.notifications_active_outlined,'Notifications', 'ON', 'MUTE',
+                      ()=>{  }
+              ),
+              CustomListTile(Icons.circle_notifications_outlined,'Notification Dot', 'ON', 'OFF',
+                      ()=>{  }
+              ),
             ],
              //child: Text('Very legit settings page'),
           ),
@@ -113,7 +148,7 @@ class CustomListTile extends StatelessWidget{
                   inactiveBgColor: Colors.purple.shade400,
                   inactiveFgColor: Colors.white,
                   totalSwitches: 2,
-                  labels:["OFF","ON"],
+                  labels:[on,off],
                   // borderColor: [Color(0xff773b98), Color(0xffbf63d9), Color(0xff724cc4), Color(0xff962fbf), Color(0xffbf63d9)],
                   borderColor: [Color(0xff9545c0), Colors.purpleAccent],
                   dividerColor: Colors.white38,
