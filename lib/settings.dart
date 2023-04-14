@@ -35,6 +35,8 @@ class SettingsPage extends StatelessWidget {
                   ),
                 ),
               ),
+
+              // ACCESSIBILITY SETTINGS
               Material(
                 type: MaterialType.transparency,
                 child: Padding(
@@ -59,6 +61,8 @@ class SettingsPage extends StatelessWidget {
               CustomListTile(Icons.contrast,'Contrast', 'OFF', 'ON',
                       ()=>{  }
               ),
+
+              // MESSAGES SETTINGS
               Material(
                 type: MaterialType.transparency,
                 child: Padding(
@@ -80,9 +84,7 @@ class SettingsPage extends StatelessWidget {
             ],
              //child: Text('Very legit settings page'),
           ),
-
         ),
-
       ),
 
       floatingActionButton: FloatingActionButton(
@@ -110,9 +112,6 @@ class CustomListTile extends StatelessWidget{
     return Padding(
       padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 6.0),
       child: Container(
-        // decoration: BoxDecoration(
-        //     border: Border(bottom: BorderSide(color: Colors.white54.withOpacity(0.4)))
-        // ),
         child: InkWell(
           splashColor: Colors.purpleAccent.shade100,
           child: Container(
@@ -135,9 +134,9 @@ class CustomListTile extends StatelessWidget{
                       ),
                     ),
 // Here, default theme colors are used for activeBgColor, activeFgColor, inactiveBgColor and inactiveFgColor
-
                   ],
                 ),
+
                 ToggleSwitch(
                   minWidth: 60.0,
                   minHeight: 25.0,
@@ -153,6 +152,7 @@ class CustomListTile extends StatelessWidget{
                   borderColor: [Color(0xff9545c0), Colors.purpleAccent],
                   dividerColor: Colors.white38,
                   activeBgColor:  [Colors.purpleAccent.shade100],
+                  // Functionality
                   onToggle: (index) {
                     //What switch does
                     print('switched to: $index');
