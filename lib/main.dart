@@ -8,6 +8,7 @@ import "HomePage.dart";
 import 'ContactList.dart';
 import 'Sidebar.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -21,10 +22,20 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          // App Theme (1)
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
         canvasColor: Colors.transparent,
+        // Font Size
+        textTheme: Theme.of(context).textTheme.apply(
+          //text: GoogleFonts.lexend(),
+          fontSizeFactor: 1.0,
+          // fontSizeFactor: 1.5,
+          fontSizeDelta: 10.0,
+        ),
       ),
+      darkTheme: ThemeData(
+          brightness: Brightness.dark
+      ),
+      themeMode: ThemeMode.light,
       home: HomePage(),
     );
   }
