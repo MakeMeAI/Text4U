@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'helper/UserContacts.dart';
 
 class ChatDisplay extends StatelessWidget {
-  final List<List<String>> chatData;
+  //messages with user, true if sent by user false if sent by contact
+  final List<Message> chatData;
+  //name of contact
+  String contact;
 
-  ChatDisplay({required this.chatData});
+  ChatDisplay({required this.contact, required this.chatData});
 
 
   @override
@@ -65,8 +68,9 @@ class ChatDisplay extends StatelessWidget {
                   itemCount: chatData.length,
                   itemBuilder: (BuildContext context, int index) {
                     return ChatMessage(
-                      sender: chatData[index][0],
-                      messageText: chatData[index][1],
+
+                      sender: chatData[index].isMe ? "User" : contact,
+                      messageText: chatData[index].messageContent,
                     );
                   },
                 ),
