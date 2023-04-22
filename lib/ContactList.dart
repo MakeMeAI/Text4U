@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'convoBubble.dart';
 import 'conversationPage.dart';
+import 'userContacts.dart';
 
 class ContactList extends StatelessWidget {
   //dummy data till we have actual info from backend
@@ -22,6 +22,11 @@ class ContactList extends StatelessWidget {
     'Anna Taylor',
     'Richard White',
   ];
+  'Emily Davis': 12,
+  'Chris Lee': 13,
+  'Anna Taylor': 14,
+  'Richard White': 15,
+  };
 //more dummy data
   final List<List<String>> chatData = [
     ['Alice', 'Hi there!'],
