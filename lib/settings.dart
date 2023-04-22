@@ -127,10 +127,9 @@ class CustomListTile extends StatelessWidget{
                       padding: const EdgeInsets.all(15.0),
                       child: Material(
                         type: MaterialType.transparency,
-                        child: Text(text, style: TextStyle(
-                            color: Colors.white.withOpacity(0.8),
-                            fontSize: 20.0
-                        ),),
+                        child: Text(text,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                       ),
                     ),
 // Here, default theme colors are used for activeBgColor, activeFgColor, inactiveBgColor and inactiveFgColor
