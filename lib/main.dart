@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
@@ -84,7 +84,6 @@ class _MyHomePageState extends State<HomePage> {
   ];
 
 
-  @override
   void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
@@ -104,14 +103,14 @@ class _MyHomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     // Rerunning build (4)
-    return new Scaffold (
+    return Scaffold (
       //drawer: sidebar(),
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       body: Stack (
         children: <Widget> [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -143,7 +142,7 @@ class _MyHomePageState extends State<HomePage> {
         elevation: 0,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.black,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.camera),
             tooltip: 'Camera',

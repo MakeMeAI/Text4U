@@ -10,7 +10,7 @@ class SettingsPage extends StatelessWidget {
         child: Container (
           decoration: BoxDecoration(
               border: Border.all( width: 1, color: Colors.transparent),
-              borderRadius: const BorderRadius.all(const Radius.circular(40)),
+              borderRadius: const BorderRadius.all(Radius.circular(40)),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -88,7 +88,7 @@ class SettingsPage extends StatelessWidget {
       ),
 
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.arrow_back_ios),
+        child: const Icon(Icons.arrow_back_ios),
         onPressed: () {
           Navigator.pop(context);
         },

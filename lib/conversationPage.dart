@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 
-
 class ChatDisplay extends StatelessWidget {
   final List<List<String>> chatData;
 
-  ChatDisplay({required this.chatData});
+  const ChatDisplay({super.key, required this.chatData});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat Display'),
+        title: const Text('Chat Display'),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -39,12 +38,12 @@ class ChatMessage extends StatelessWidget {
   final String sender;
   final String messageText;
 
-  ChatMessage({required this.sender, required this.messageText});
+  const ChatMessage({super.key, required this.sender, required this.messageText});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -55,10 +54,17 @@ class ChatMessage extends StatelessWidget {
               color: Colors.grey[600],
             ),
           ),
-          SizedBox(height: 5.0),
-          Text(
-            messageText,
-            style: TextStyle(fontSize: 16.0),
+          const SizedBox(height: 5.0),
+          Container(
+            padding: const EdgeInsets.all(12.0),
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            child: Text(
+              messageText,
+              style: const TextStyle(fontSize: 16.0),
+            ),
           ),
         ],
       ),

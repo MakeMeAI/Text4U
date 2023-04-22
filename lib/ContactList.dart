@@ -38,7 +38,7 @@ class ContactList extends StatelessWidget {
         bottom: true,
         child: CustomScrollView(
       slivers: <Widget>[
-        SliverAppBar(
+        const SliverAppBar(
           title: Text("Welcome back, NAME"),
           backgroundColor: Color(0x4400000000),
           elevation: 0,

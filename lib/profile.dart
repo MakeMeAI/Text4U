@@ -15,7 +15,7 @@ class _ProfileEdit extends State<ProfilePage> {
         children: [
           // container - background color
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -28,7 +28,7 @@ class _ProfileEdit extends State<ProfilePage> {
           ),
           // container - for the profile icon
           Container(
-            padding: EdgeInsets.only(left: 15, top: 20, right: 15),
+            padding: const EdgeInsets.only(left: 15, top: 20, right: 15),
             child: ListView(
               children: [
                 Center(
@@ -62,7 +62,7 @@ class _ProfileEdit extends State<ProfilePage> {
                             border: Border.all(width: 4, color: Colors.white),
                             color: Colors.blue,
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.edit,
                             color: Colors.white,
                           ),
@@ -80,7 +80,7 @@ class _ProfileEdit extends State<ProfilePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.arrow_back_ios),
+        child: const Icon(Icons.arrow_back_ios),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -90,24 +90,24 @@ class _ProfileEdit extends State<ProfilePage> {
 
   Widget buildTextField(String labelText, String placeholder, bool isPassword) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 30),
+      padding: const EdgeInsets.only(bottom: 30),
       child: TextField (
         obscureText: isPassword ? isObscurePassword : false,
         decoration: InputDecoration(
           suffixIcon: isPassword ?
               IconButton (
-                icon: Icon(Icons.remove_red_eye, color: Colors.grey),
+                icon: const Icon(Icons.remove_red_eye, color: Colors.grey),
                 onPressed: () {
                   setState(() {
                     isObscurePassword = !isObscurePassword;
                   });
                 }
               ): null,
-              contentPadding: EdgeInsets.only(bottom: 5),
+              contentPadding: const EdgeInsets.only(bottom: 5),
               labelText: labelText,
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 hintText: placeholder,
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.grey

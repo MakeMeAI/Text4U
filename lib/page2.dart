@@ -9,7 +9,7 @@ class Page2 extends StatelessWidget {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: Text("page 2 stuff"),
+        title: const Text("page 2 stuff"),
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         elevation: 0,

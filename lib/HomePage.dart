@@ -78,6 +78,7 @@ class _landingPageState extends State<landingPage> {
                     name = data['message'] ?? '';
                     name = jsonResponse['name'] ?? '';
                   });
+                  nameController.clear(); // Clear the text box data
                 },
                 child: Text("Submit"),
               ),
