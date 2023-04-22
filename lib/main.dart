@@ -3,6 +3,7 @@ import 'package:text4u/convoBubble.dart' as contextBox;
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:text4u/helper/requests.dart' as requests;
+import 'package:text4u/theme.dart';
 import "page2.dart";
 import "HomePage.dart";
 import 'ContactList.dart';
@@ -21,21 +22,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        canvasColor: Colors.transparent,
-        // Font Size
-        textTheme: Theme.of(context).textTheme.apply(
-          //text: GoogleFonts.lexend(),
-          fontSizeFactor: 1.0,
-          // fontSizeFactor: 1.5,
-          fontSizeDelta: 10.0,
-        ),
-      ),
-      darkTheme: ThemeData(
-          brightness: Brightness.dark
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.light,
+      // textTheme: Theme.of(context).textTheme.apply(
+      //   //text: GoogleFonts.lexend(),
+      //   fontSizeFactor: 1.0,
+      //   // fontSizeFactor: 1.5,
+      //   fontSizeDelta: 10.0,
+      // ),
       home: HomePage(),
     );
   }
