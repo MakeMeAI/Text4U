@@ -18,6 +18,14 @@ class chatDisplay extends StatefulWidget {
 class chatDisplayState extends State<chatDisplay> {
   //messages with user, true if sent by user false if sent by contact
 
+  TextEditingController _messageController = TextEditingController();
+
+  void addNewMessage(bool sender, String messageText) {
+    setState(() {
+      widget.chatData.addMessage(sender, messageText);
+      _messageController.clear();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,11 +100,12 @@ class chatDisplayState extends State<chatDisplay> {
                     children: [
                       Expanded(
                         child: TextField(
+                          controller: _messageController,
                           onChanged: (value) {
                             // Do something with the typed value
                           },
                           onSubmitted: (value) {
-                            widget.chatData.addMessage(true, value);
+
                           },
                           decoration: InputDecoration(
                             hintText: 'Type a message...',
@@ -107,11 +116,18 @@ class chatDisplayState extends State<chatDisplay> {
                           ),
                         ),
                       ),
+
                       IconButton(
                         icon: Icon(Icons.send),
                         onPressed: () {
                           // Add the typed message to the chat
-                          // chatData.addMessage(true, value);
+                            String message = _messageController.text;
+                            if (message.isNotEmpty) {
+                              setState(() {
+                                addNewMessage(true, message);
+                                _messageController.clear();
+                              });
+                            }
                         },
                       ),
                     ],
@@ -124,12 +140,6 @@ class chatDisplayState extends State<chatDisplay> {
         ],
       ),
     );
-  }
-
-  void _addMessage(bool sender, String messageText) {
-    setState(() {
-      widget.chatData.addMessage(sender, messageText);
-    });
   }
 
 }
