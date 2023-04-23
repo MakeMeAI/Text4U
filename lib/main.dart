@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Text4U App',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.light,
@@ -107,14 +107,15 @@ class _MyHomePageState extends State<HomePage> {
         children: <Widget> [
           Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Colors.purple,
-                  Colors.blue,
-                ],
-              )
+              gradient: AppTheme.lightThemeData.gradientBackground,
+              //   gradient: LinearGradient(
+              //   begin: Alignment.topLeft,
+              //   end: Alignment.bottomRight,
+              //   colors: [
+              //     Colors.purple,
+              //     Colors.blue,
+              //   ],
+              // )
            ),
           ),
           PageView(
