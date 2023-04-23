@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'helper/UserContacts.dart';
 
-class ChatDisplay extends StatelessWidget {
-  //messages with user, true if sent by user false if sent by contact
-  final List<Message> chatData;
+class chatDisplay extends StatefulWidget {
+  final UserContacts chatData;
   //name of contact
-  String contact;
+  final String contact;
+  chatDisplay({required this.contact, required this.chatData});
 
-  ChatDisplay({required this.contact, required this.chatData});
+  @override
+  chatDisplayState createState() => chatDisplayState();
+
+
+
+}
+
+@override
+class chatDisplayState extends State<chatDisplay> {
+  //messages with user, true if sent by user false if sent by contact
 
 
   @override
@@ -62,18 +71,53 @@ class ChatDisplay extends StatelessWidget {
                   ],
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: ListView.builder(
-                  itemCount: chatData.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ChatMessage(
-
-                      sender: chatData[index].isMe ? "User" : contact,
-                      messageText: chatData[index].messageContent,
-                    );
-                  },
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: widget.chatData.pastMessages.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ChatMessage(
+                        sender: widget.chatData.pastMessages[index].isMe ? "User" : widget.contact,
+                        messageText: widget.chatData.pastMessages[index].messageContent,
+                      );
+                    },
+                  ),
                 ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          onChanged: (value) {
+                            // Do something with the typed value
+                          },
+                          onSubmitted: (value) {
+                            widget.chatData.addMessage(true, value);
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'Type a message...',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                            ),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.send),
+                        onPressed: () {
+                          // Add the typed message to the chat
+                          // chatData.addMessage(true, value);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ]
               ),
             ),
           ),
@@ -81,6 +125,13 @@ class ChatDisplay extends StatelessWidget {
       ),
     );
   }
+
+  void _addMessage(bool sender, String messageText) {
+    setState(() {
+      widget.chatData.addMessage(sender, messageText);
+    });
+  }
+
 }
 
 class ChatMessage extends StatelessWidget {

@@ -44,7 +44,7 @@ class ContactList extends StatelessWidget {
                 lastMessage: 'Hello, how are you?',
                 onPressed: () {
                   Navigator.push(context, new MaterialPageRoute(
-                    builder: (context)=>ChatDisplay(contact: dummyContacts[index].contactName, chatData: dummyContacts[index].pastMessages)));
+                    builder: (context)=>chatDisplay(contact: dummyContacts[index].contactName, chatData: dummyContacts[index])));
 
 
                 },
