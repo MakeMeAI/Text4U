@@ -1,26 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MyTheme {
+class AppTheme{
+
+  AppTheme._();
+
   static ThemeData lightTheme = ThemeData(
-    primarySwatch: Colors.purple,
+    primaryColor: Colors.purple.shade500,
+    primarySwatch: Colors.deepPurple,
+      // TODO: build this gradient into the theme
+      // decoration: BoxDecoration(
+      //     border: Border.all( width: 1, color: Colors.transparent),
+      //     borderRadius: const BorderRadius.all(const Radius.circular(40)),
+      //     gradient: LinearGradient(
+      //       begin: Alignment.topLeft,
+      //       end: Alignment.bottomRight,
+      //       colors: [
+      //         Colors.purple.shade500,
+      //         Colors.deepPurpleAccent.shade100,
+      //       ],
+      //     )
+      // ),
     canvasColor: Colors.transparent,
-    // Font Size
-    textTheme: Theme.of(context).textTheme.apply(
-      //headline2: GoogleFonts.lexend()
-      //text: GoogleFonts.lexend(),
-      //fontFamilyFallback: GoogleFonts.lexend(),
-      fontSizeFactor: 1.0,
-      // fontSizeFactor: 1.5,
-      fontSizeDelta: 10.0,
-    ),
-    //Font type
-    // textTheme: TextTheme(
-    //   bodyLarge: GoogleFonts.lexend(),
-    // ),
+    brightness: Brightness.light,
+    textTheme: TextTheme(
+      displaySmall: GoogleFonts.lato(
+        color: Colors.white,
+        fontSize: 15,
+      ),
+      displayMedium: GoogleFonts.montserrat(
+        color: Colors.white.withOpacity(0.8),
+        fontSize: 10,
+      ),
+      bodyMedium: GoogleFonts.montserrat(
+        color: Colors.white.withOpacity(0.8),
+        fontSize: 20,
+      ),
+      displayLarge: GoogleFonts.montserrat(
+        color: Colors.white,
+        fontSize: 40,
+        fontWeight: FontWeight.bold,
+      ),
+    )
   );
+
   static ThemeData darkTheme = ThemeData(
-    brightness: Brightness.dark,
+    primarySwatch: Colors.deepPurple,
+    primaryColor: Colors.blueAccent,
+    canvasColor: Colors.transparent,
+    brightness: Brightness.dark, colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple).copyWith(background: Colors.black38),
+    textTheme: TextTheme(
+      displaySmall: GoogleFonts.lato(
+        color: Colors.white,
+        fontSize: 15,
+      ),
+      displayMedium: GoogleFonts.montserrat(
+        color: Colors.white.withOpacity(0.8),
+        fontSize: 20,
+      ),
+      displayLarge: GoogleFonts.montserrat(
+        color: Colors.white,
+        fontSize: 40,
+        fontWeight: FontWeight.bold,
+      ),
+    )
   );
 }
-

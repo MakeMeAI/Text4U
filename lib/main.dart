@@ -1,68 +1,88 @@
 import 'package:flutter/material.dart';
-import "package:google_fonts/google_fonts.dart";
+import 'package:text4u/convoBubble.dart' as contextBox;
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
+import 'package:text4u/helper/requests.dart' as requests;
+import 'package:text4u/theme.dart';
 import "page2.dart";
-import "page1.dart";
-import "sidebar.dart";
+import "HomePage.dart";
+import 'ContactList.dart';
+import 'Sidebar.dart';
 
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return new MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-          // App Theme (1)
-        primarySwatch: Colors.purple,
-        canvasColor: Colors.transparent,
-        // Font Size
-        textTheme: Theme.of(context).textTheme.apply(
-          //headline2: GoogleFonts.lexend()
-          //text: GoogleFonts.lexend(),
-          fontSizeFactor: 1.0,
-          // fontSizeFactor: 1.5,
-          fontSizeDelta: 10.0,
-        ),
-      ),
-      darkTheme: ThemeData(
-          brightness: Brightness.dark
-      ),
-      themeMode: ThemeMode.system,
-      home: Nav(),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.light,
+      // textTheme: Theme.of(context).textTheme.apply(
+      //   //text: GoogleFonts.lexend(),
+      //   fontSizeFactor: 1.0,
+      //   // fontSizeFactor: 1.5,
+      //   fontSizeDelta: 10.0,
+      // ),
+      home: HomePage(),
     );
   }
 }
 
-class Nav extends StatefulWidget {
+
+
+// class Nav extends StatelessWidget {
+//   //old declration locations
+//   String name = "";
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return new Container(
+//      decoration: BoxDecoration(
+//           gradient: LinearGradient(
+//             begin: Alignment.topLeft,
+//             end: Alignment.bottomRight,
+//             colors: [
+//               Colors.purple,
+//               Colors.blue,
+//             ],
+//           )
+//       ),
+//       child: HomePage(),
+//     );
+//   }
+// }
+
+class HomePage extends StatefulWidget {
   @override
-  _NavState createState() => _NavState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
+class _MyHomePageState extends State<HomePage> {
+  int _selectedIndex = 1;
+  TextEditingController nameController = TextEditingController();
+  PageController _pageController = PageController(initialPage: 1);
 
-class _NavState extends State<Nav> {
-  int _selectedIndex = 0;
 
-  PageController _pageController = PageController(initialPage: 0);
 
-  List<Widget> _pageOptions = <Widget>[
-    Page1(),
-    Page2(),
-    Text("Messages"),
+  final List<Widget> _pageOptions = <Widget>[
+    const Page2(),
+    HomePage(),
+    const Text("Messages"),
   ];
 
+
+  @override
   void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
-      /*
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => _pageOptions[index]),
-      );
-       */
       _pageController.animateToPage(index,
           duration: Duration(milliseconds: 300),
           curve: Curves.easeInOut);
@@ -78,15 +98,11 @@ class _NavState extends State<Nav> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold (
+    // Rerunning build (4)
+    return new Scaffold (
       //drawer: sidebar(),
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      //appBar: AppBar(
-        //title: Text("Welcome back, NAME"),
-        //backgroundColor: Colors.transparent,
-        //elevation: 0,
-      //),
       body: Stack (
         children: <Widget> [
           Container(
@@ -109,8 +125,9 @@ class _NavState extends State<Nav> {
               });
             },
             children: [
-              Page1(),
               Page2(),
+              landingPage(),
+              ContactList(),
             ],
           ),
         ],
@@ -123,14 +140,14 @@ class _NavState extends State<Nav> {
         unselectedItemColor: Colors.black,
         items: [
           BottomNavigationBarItem(
+            icon: Icon(Icons.camera),
+            tooltip: 'Camera',
+            label: "Page 2",
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.home),
             tooltip: 'Calls',
             label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.camera),
-            tooltip: 'Camera',
-            label: "page 2",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
@@ -140,171 +157,9 @@ class _NavState extends State<Nav> {
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTap,
-      ),
-    );
-  }
-}
-/* working on --- uncomment if other fails
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold (
-      drawer: sidebar(),
-      extendBodyBehindAppBar: true,
-      backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        title: Text("Welcome back, NAME"),
-        backgroundColor: Color(0x4400000000),
-        elevation: 0,
-      ),
-      body: Center (
-        child: Stack (
-          children: <Widget> [
-            Container (
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Colors.purple,
-                      Colors.blue,
-                    ],
-                  )
-              ),
-            ),
-            _pageOptions[_selectedIndex],
-            //_pageOptions.elementAt(_selectedIndex),
-          ]
-        ),
-      ),
-      extendBody: true,
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0x4400000000),
-        elevation: 0,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.black,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            tooltip: 'Calls',
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.camera),
-            tooltip: 'Camera',
-            label: "page 2",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            tooltip: 'Chats',
-            label: "Messages",
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTap,
-      ),
-    );
-  }
-}
-*/
 
-
-/*
-class _NavState extends State<Nav> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-     decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.purple,
-              Colors.blue,
-            ],
-          )
-      ),
-      child: PageView(
-      //controller: _controller,
-      children: [
-        _MyHomePageState(),
-         page2.Page2(),
-      ],
-
-    ),
-    );
-
-  }
-}
-
-*/
-/*
-class _MyHomePageState extends StatefulWidget {
-  //FIGURE OUT WHY WRONG
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-  // }
-
-  @override
-  Widget build(BuildContext context) {
-    // Rerunning build (4)
-    return Scaffold(
-      drawer: sidebar(),
-      extendBodyBehindAppBar: true,
-      backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text("Welcome back, NAME"),
-        backgroundColor: Color(0x4400000000),
-        elevation: 0,
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Container (
-        ),
-      ),
-
-      extendBody: true,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        backgroundColor: Color(0x4400000000),
-        elevation: 0,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.black,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            tooltip: 'Calls',
-            label: "Home",
-            //backgroundColor: Colors.blue,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.camera),
-            tooltip: 'Camera',
-            label: "page 2",
-            //backgroundColor: Colors.green,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            tooltip: 'Chats',
-            label: "page 3",
-            //backgroundColor: Colors.red,
-          ),
-        ],
-        //currentIndex: _selectedIndex, ---- add back in - ali
-        //ADD BACK
-        //onTap: _onItemTapped,
       ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
+      );
   }
 }
-*/
+

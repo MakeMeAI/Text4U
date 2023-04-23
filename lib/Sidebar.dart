@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:text4u/settings.dart';
+import 'package:text4u/profile.dart';
 
 class sidebar extends StatelessWidget {
   @override
@@ -9,7 +10,7 @@ class sidebar extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all( width: 1, color: Colors.transparent),
             borderRadius: const BorderRadius.all(const Radius.circular(40)),
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
@@ -41,11 +42,13 @@ class sidebar extends StatelessWidget {
           ),
           CustomListTile(Icons.favorite,'Favorites', ()=>{Navigator.pop(context)}),
           CustomListTile(Icons.auto_graph, 'Statistics', ()=>{Navigator.pop(context)}),
-          CustomListTile(Icons.verified_user,'Profile', ()=>{Navigator.pop(context)}),
+          CustomListTile(Icons.verified_user,'Profile', ()=>{
+            // NOTE: CURRENTLY POPPING OUT OF THE SETTING LOCATION - NEED FIX!!
+            Navigator.push(context, new MaterialPageRoute(
+                builder: (context)=>ProfilePage()))}),
           CustomListTile(Icons.settings,'Settings', ()=> {
             Navigator.push(context, new MaterialPageRoute(
-                builder: (context)=>SettingsPage()))}
-          )
+                builder: (context)=>SettingsPage()))})
         ],
       ),
       ),
@@ -94,7 +97,7 @@ class CustomListTile extends StatelessWidget{
                           type: MaterialType.transparency,
                           child: Text(text, style: TextStyle(
                               color: Colors.white.withOpacity(0.8),
-                              //fontSize: 20.0
+                              fontSize: 20.0
                           ),),
                         ),
                       ),
