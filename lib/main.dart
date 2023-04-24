@@ -9,7 +9,6 @@ import 'ContactList.dart';
 import 'Sidebar.dart';
 import 'Splash.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -23,22 +22,12 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+          // App Theme (1)
+        primarySwatch: Colors.blue,
         canvasColor: Colors.transparent,
-        // Font Size
-        textTheme: Theme.of(context).textTheme.apply(
-          //text: GoogleFonts.lexend(),
-          fontSizeFactor: 1.0,
-          // fontSizeFactor: 1.5,
-          fontSizeDelta: 10.0,
-        ),
-      ),
-      darkTheme: ThemeData(
-          brightness: Brightness.dark
       ),
       //home: HomePage(),
       home: Splash(),
-      themeMode: ThemeMode.light,
     );
   }
 }
