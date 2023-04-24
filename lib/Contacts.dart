@@ -36,12 +36,31 @@ class _Contacts extends State<Contacts> {
                     SizedBox(height: 50, child: CircularProgressIndicator()),
                 );
               }
-
-            }
-          )
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  Contact contact = snapshot.data[index];
+                  return Column(children: [
+                    ListTile(
+                      leading: const CircleAvatar(
+                        radius: 20,
+                        child: Icon(Icons.person),
+                      ),
+                      title: Text(contact.displayName),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(contact.phones[0]),
+                        ],
+                      ),
+                    ),
+                    const Divider()
+                  ]);
+                });
+            },
+          ),
         ),
       ),
-
     );
   }
 
