@@ -8,6 +8,6 @@ class BarChartInfo {
   BarChartInfo({
     required this.month,
     required this.messages,
-    required.this.color,
+    required this.color,
   });
 }
