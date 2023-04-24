@@ -5,6 +5,53 @@ import 'bar_chart_info.dart';
 class Page2 extends StatelessWidget {
   Page2({Key? key}) : super(key:key);
 
+  final List<BarChartInfo> data = [
+    BarChartInfo(
+      month: "Jan",
+      messages: 10,
+      color: charts.ColorUtil.fromDartColor(Colors.cyanAccent),
+    ),
+    BarChartInfo(
+      month: "Feb",
+      messages: 15,
+      color: charts.ColorUtil.fromDartColor(Colors.cyanAccent),
+    ),
+    BarChartInfo(
+      month: "Mar",
+      messages: 20,
+      color: charts.ColorUtil.fromDartColor(Colors.cyanAccent),
+    ),
+    BarChartInfo(
+      month: "Apr",
+      messages: 15,
+      color: charts.ColorUtil.fromDartColor(Colors.cyanAccent),
+    ),
+    BarChartInfo(
+      month: "May",
+      messages: 5,
+      color: charts.ColorUtil.fromDartColor(Colors.cyanAccent),
+    ),
+    BarChartInfo(
+      month: "June",
+      messages: 30,
+      color: charts.ColorUtil.fromDartColor(Colors.cyanAccent),
+    ),
+    BarChartInfo(
+      month: "July",
+      messages: 25,
+      color: charts.ColorUtil.fromDartColor(Colors.cyanAccent),
+    ),
+    BarChartInfo(
+      month: "Aug",
+      messages: 15,
+      color: charts.ColorUtil.fromDartColor(Colors.cyanAccent),
+    ),
+    BarChartInfo(
+      month: "Sept",
+      messages: 20,
+      color: charts.ColorUtil.fromDartColor(Colors.cyanAccent),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {

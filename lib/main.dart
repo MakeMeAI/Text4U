@@ -69,7 +69,7 @@ class _MyHomePageState extends State<HomePage> {
 
 
   final List<Widget> _pageOptions = <Widget>[
-    const Page2(),
+    Page2(),
     HomePage(),
     const Text("Messages"),
   ];
