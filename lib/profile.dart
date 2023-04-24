@@ -6,6 +6,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfileEdit extends State<ProfilePage> {
+  // hide the password or not
   bool isObscurePassword = true;
   @override
   Widget build(BuildContext context) {
@@ -71,6 +72,7 @@ class _ProfileEdit extends State<ProfilePage> {
                     ],
                   ),
                 ),
+                // textbox fields to fill/change
                 buildTextField("Full Name", "Enter name", false),
                 buildTextField("Email", "Enter email", false),
                 buildTextField("Password", "Enter password", true),
@@ -79,6 +81,7 @@ class _ProfileEdit extends State<ProfilePage> {
           ),
         ],
       ),
+      // back arrow to go back
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.arrow_back_ios),
         onPressed: () {
@@ -92,6 +95,7 @@ class _ProfileEdit extends State<ProfilePage> {
     return Padding(
       padding: EdgeInsets.only(bottom: 30),
       child: TextField (
+        // show the password - remove from hiding
         obscureText: isPassword ? isObscurePassword : false,
         decoration: InputDecoration(
           suffixIcon: isPassword ?

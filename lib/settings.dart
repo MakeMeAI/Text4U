@@ -30,7 +30,6 @@ class SettingsPage extends StatelessWidget {
                 ),),
               ),
             ),
-            //child: Text('Very legit settings page'),
           )
         ),
       ),

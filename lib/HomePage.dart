@@ -15,7 +15,6 @@ class _landingPageState extends State<landingPage> {
   String name = '';
   TextEditingController nameController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +22,7 @@ class _landingPageState extends State<landingPage> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: AppBar(
+        // update welcome banner once name is received
         title: Text("Welcome back, ${name ?? ''}"),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -30,6 +30,7 @@ class _landingPageState extends State<landingPage> {
       body: Center (
         child: Stack (
             children: <Widget> [
+              // background color
               Container(
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -48,6 +49,7 @@ class _landingPageState extends State<landingPage> {
                   alignment: Alignment.center,
                   child: FractionalTranslation(
                     translation: const Offset(0.0, -1.0),
+                    // text box look
                     child: TextField(
                       cursorColor: Colors.white,
                       controller: nameController,
@@ -69,12 +71,14 @@ class _landingPageState extends State<landingPage> {
                   ),
                 ),
               ),
+              // position of question box in the middle of screen
               Positioned(
                 top: MediaQuery.of(context).size.height / 2 + 50,
                 left: MediaQuery.of(context).size.width / 2 - 50,
                 child: Text("Name: ${name.toString()}"),
               ),
               Center(
+                // communicating with the backend with the name received
                 child: ElevatedButton(
                   onPressed: () async {
                     var response = await requests.postData(nameController.text);

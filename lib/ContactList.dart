@@ -1,8 +1,5 @@
-
 import 'package:flutter/material.dart';
-
 import 'convoBubble.dart';
-
 import 'conversationPage.dart';
 
 class ContactList extends StatelessWidget {

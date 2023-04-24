@@ -5,6 +5,7 @@ import 'bar_chart_info.dart';
 class Page2 extends StatelessWidget {
   Page2({Key? key}) : super(key:key);
 
+  // data for the graph
   final List<BarChartInfo> data = [
     BarChartInfo(
       month: "Jan",
@@ -66,7 +67,6 @@ class Page2 extends StatelessWidget {
     ];
 
 
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
@@ -77,7 +77,8 @@ class Page2 extends StatelessWidget {
         elevation: 0,
       ),
       body: Container (
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+        // controls the size of the graph
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical:100),
         child: charts.BarChart(
           series,
           animate: true,

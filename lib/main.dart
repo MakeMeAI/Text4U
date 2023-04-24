@@ -20,41 +20,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
           // App Theme (1)
         primarySwatch: Colors.blue,
         canvasColor: Colors.transparent,
       ),
-      //home: HomePage(),
+      // directs its to the splash page before opening app
       home: Splash(),
     );
   }
 }
-
-
-
-// class Nav extends StatelessWidget {
-//   //old declration locations
-//   String name = "";
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return new Container(
-//      decoration: BoxDecoration(
-//           gradient: LinearGradient(
-//             begin: Alignment.topLeft,
-//             end: Alignment.bottomRight,
-//             colors: [
-//               Colors.purple,
-//               Colors.blue,
-//             ],
-//           )
-//       ),
-//       child: HomePage(),
-//     );
-//   }
-// }
 
 class HomePage extends StatefulWidget {
   @override
@@ -62,20 +37,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<HomePage> {
+  // controls the index of nav bar page
   int _selectedIndex = 1;
   TextEditingController nameController = TextEditingController();
   PageController _pageController = PageController(initialPage: 1);
 
 
-
-  final List<Widget> _pageOptions = <Widget>[
-    Page2(),
-    HomePage(),
-    const Text("Messages"),
-  ];
-
-
   @override
+  // on tap switch the page index
   void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
@@ -85,7 +54,6 @@ class _MyHomePageState extends State<HomePage> {
     });
   }
 
-  // delete if fails
   @override
   void dispose() {
     _pageController.dispose();
@@ -94,13 +62,12 @@ class _MyHomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Rerunning build (4)
     return new Scaffold (
-      //drawer: sidebar(),
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       body: Stack (
         children: <Widget> [
+          // background color
           Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -113,6 +80,7 @@ class _MyHomePageState extends State<HomePage> {
               )
            ),
           ),
+          // store info on the other pages - used for page switch
           PageView(
             controller: _pageController,
             onPageChanged: (newIndex) {
@@ -128,6 +96,7 @@ class _MyHomePageState extends State<HomePage> {
           ),
         ],
       ),
+      // navigation bar on the bottom icons/names
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.transparent,
@@ -136,18 +105,15 @@ class _MyHomePageState extends State<HomePage> {
         unselectedItemColor: Colors.black,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.camera),
-            tooltip: 'Camera',
-            label: "Page 2",
+            icon: Icon(Icons.bar_chart),
+            label: "Statistic",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            tooltip: 'Calls',
             label: "Home",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
-            tooltip: 'Chats',
             label: "Messages",
           ),
         ],

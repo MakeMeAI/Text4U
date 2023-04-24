@@ -7,6 +7,7 @@ class sidebar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
+        // background color
         decoration: BoxDecoration(
             border: Border.all( width: 1, color: Colors.transparent),
             borderRadius: const BorderRadius.all(const Radius.circular(40)),
@@ -21,6 +22,7 @@ class sidebar extends StatelessWidget {
         ),
       child: ListView(
         children:[
+          // user info on the top ~ can add profile pic later
           Container(
             height: 200,
             child: UserAccountsDrawerHeader(
@@ -40,6 +42,7 @@ class sidebar extends StatelessWidget {
                 ),
             ),
           ),
+          // other navigating tabs
           CustomListTile(Icons.favorite,'Favorites', ()=>{Navigator.pop(context)}),
           CustomListTile(Icons.auto_graph, 'Statistics', ()=>{Navigator.pop(context)}),
           CustomListTile(Icons.verified_user,'Profile', ()=>{

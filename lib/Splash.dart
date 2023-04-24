@@ -15,6 +15,7 @@ class _splashState extends State<Splash> {
     _toHome();
   }
 
+  // how long the splash page stays for ~ directs to where after
   _toHome() async {
     await Future.delayed(Duration(milliseconds: 2500), () {});
     Navigator.pushReplacement(
@@ -26,6 +27,7 @@ class _splashState extends State<Splash> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
+        // centers the logo image in the middle + name
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
