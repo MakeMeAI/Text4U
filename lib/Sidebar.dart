@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:text4u/settings.dart';
 import 'package:text4u/profile.dart';
+import 'package:text4u/Contacts.dart';
 
 class sidebar extends StatelessWidget {
   @override
