@@ -44,7 +44,9 @@ class sidebar extends StatelessWidget {
           ),
           // other navigating tabs
           CustomListTile(Icons.favorite,'Favorites', ()=>{Navigator.pop(context)}),
-          CustomListTile(Icons.auto_graph, 'Statistics', ()=>{Navigator.pop(context)}),
+          CustomListTile(Icons.auto_graph, 'Contact List', ()=>{
+            Navigator.push(context, new MaterialPageRoute(
+                builder: (context)=>Contacts()))}),
           CustomListTile(Icons.verified_user,'Profile', ()=>{
             // NOTE: CURRENTLY POPPING OUT OF THE SETTING LOCATION - NEED FIX!!
             Navigator.push(context, new MaterialPageRoute(
