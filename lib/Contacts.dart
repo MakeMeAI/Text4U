@@ -17,16 +17,26 @@ class _Contacts extends State<Contacts> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
-          title: const Text("Contact List"),
+          title: Text("Contact List", style: TextStyle(color: Colors.black)),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
         ),
         body: Container(
           height: double.infinity,
+          decoration: BoxDecoration(
+              border: Border.all(width: 1, color: Colors.transparent),
+              borderRadius: const BorderRadius.all(const Radius.circular(40)),
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.purple,
+                  Colors.deepPurpleAccent,
+                ],
+              )
+          ),
           child: FutureBuilder(
             future: getContacts(),
             builder: (context, AsyncSnapshot snapshot) {
