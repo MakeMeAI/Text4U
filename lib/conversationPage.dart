@@ -51,6 +51,7 @@ class chatDisplayState extends State<chatDisplay> {
                 IconButton(
                   icon: Icon(Icons.clear, color: Colors.black),
                   onPressed: () {
+
                     Navigator.pop(context);
                   },
                 ),

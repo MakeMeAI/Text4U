@@ -11,11 +11,12 @@ class UserContacts {
   String contactID;
   //contact name can be changed later
   String contactName;
+  String lastMessage;
   List<Message> pastMessages;
   // String profilePicture;
   //might want to add profilePicture population
   // Constructor
-  UserContacts(this.contactID, this.contactName, {this.pastMessages = const[]});
+  UserContacts(this.contactID, this.contactName, this.lastMessage, {this.pastMessages = const[]});
 
   // Getter methods
   String getName() {
@@ -32,5 +33,6 @@ class UserContacts {
 
   void addMessage(bool sentByMe, String content){
     pastMessages.add(Message(sentByMe, content));
+    lastMessage = content;
   }
 }

@@ -10,16 +10,16 @@ class ContactList extends StatelessWidget {
 
 // Initialize list of UserContacts with dummy data
   List<UserContacts> dummyContacts = [
-    UserContacts('contact_id_1', 'Contact 1', pastMessages: [
+    UserContacts('contact_id_1', 'Contact 1', 'How are you?', pastMessages: [
       Message(true, 'Hello!'), // Example user message
       Message(false, 'Hi there!'), // Example contact message
       Message(true, 'How are you?'), // Example user message
     ]),
-    UserContacts('contact_id_2', 'Contact 2', pastMessages: [
+    UserContacts('contact_id_2', 'Contact 2', 'Hello!', pastMessages: [
       Message(true, 'Hey!'), // Example user message
       Message(false, 'Hello!'), // Example contact message
     ]),
-    UserContacts('contact_id_3', 'Contact 3', pastMessages: [
+    UserContacts('contact_id_3', 'Contact 3', 'Hi, Contact 3!', pastMessages: [
       Message(false, 'Hi!'), // Example contact message
       Message(true, 'Hi, Contact 3!'), // Example user message
     ]),
@@ -41,7 +41,8 @@ class ContactList extends StatelessWidget {
                 (BuildContext context, int index) {
               return ContactBox(
                 contactName: dummyContacts[index].contactName,
-                lastMessage: 'Hello, how are you?',
+                //need to add a state update to this list so it dynamically changes instead of being static
+                lastMessage: dummyContacts[index].lastMessage,
                 onPressed: () {
                   Navigator.push(context, new MaterialPageRoute(
                     builder: (context)=>chatDisplay(contact: dummyContacts[index].contactName, chatData: dummyContacts[index])));
