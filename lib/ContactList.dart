@@ -1,35 +1,28 @@
-
 import 'package:flutter/material.dart';
-
 import 'convoBubble.dart';
-
 import 'conversationPage.dart';
+import 'helper/UserContacts.dart';
 
 class ContactList extends StatelessWidget {
-  //dummy data till we have actual info from backend
-  final List<String> contacts = [
-    'John Doe',
-    'Jane Smith',
-    'Bob Johnson',
-    'Alice Williams',
-    'Tom Davis',
-    'Samantha Lee',
-    'Mark Wilson',
-    'Karen Brown',
-    'Mike Clark',
-    'Mary Johnson',
-    'David Green',
-    'Emily Davis',
-    'Chris Lee',
-    'Anna Taylor',
-    'Richard White',
-  ];
-//more dummy data
-  final List<List<String>> chatData = [
-    ['Alice', 'Hi there!'],
-    ['Bob', 'Hey Alice, what\'s up?'],
-    ['Alice', 'Not much, just testing out this chat display.'],
-    ['Bob', 'Looks cool!'],
+  //dummy data till we have actual info from backendfinal
+
+  //map of unique id's give us
+
+// Initialize list of UserContacts with dummy data
+  List<UserContacts> dummyContacts = [
+    UserContacts('contact_id_1', 'Contact 1', 'How are you?', pastMessages: [
+      Message(true, 'Hello!'), // Example user message
+      Message(false, 'Hi there!'), // Example contact message
+      Message(true, 'How are you?'), // Example user message
+    ]),
+    UserContacts('contact_id_2', 'Contact 2', 'Hello!', pastMessages: [
+      Message(true, 'Hey!'), // Example user message
+      Message(false, 'Hello!'), // Example contact message
+    ]),
+    UserContacts('contact_id_3', 'Contact 3', 'Hi, Contact 3!', pastMessages: [
+      Message(false, 'Hi!'), // Example contact message
+      Message(true, 'Hi, Contact 3!'), // Example user message
+    ]),
   ];
 
   @override
@@ -47,22 +40,19 @@ class ContactList extends StatelessWidget {
           delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
               return ContactBox(
-                contactName: contacts[index],
-                lastMessage: 'Hello, how are you?',
+                contactName: dummyContacts[index].contactName,
+                //need to add a state update to this list so it dynamically changes instead of being static
+                lastMessage: dummyContacts[index].lastMessage,
                 onPressed: () {
-                  // print('Pressed ${contacts[index]}');
-                  Widget build(BuildContext context) {
-                    return MaterialApp(
-                      title: 'Chat Display',
-                      home: ChatDisplay(chatData: chatData),
-                    );
-                  }
+                  Navigator.push(context, new MaterialPageRoute(
+                    builder: (context)=>chatDisplay(contact: dummyContacts[index].contactName, chatData: dummyContacts[index])));
+
 
                 },
                 // color: Colors.blue,
               );
             },
-            childCount: contacts.length,
+            childCount: dummyContacts.length,
           ),
         ),
       ],
